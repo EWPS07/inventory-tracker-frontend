@@ -6,7 +6,7 @@ function storeService($log, $http) {
   $log.debug('Store service');
 
   let service = {};
-  let stores = [];
+  service.stores = [];
 
   let baseUrl = `${__API_URL__}/api/store`;
   let config = {
@@ -18,7 +18,20 @@ function storeService($log, $http) {
 
   service.addStore = function(store) {
     return $http.post(baseUrl, store, config)
-    .then(response => stores.push(response.data))
+    .then(response => service.stores.push(response.data))
+    .catch(err => $log.error(err.message));
+  };
+
+  service.updateStore = function(store) {
+    return $http.put(`${baseUrl}/${store._id}`, store, config)
+    .then(response => {
+      for (var i = 0; i < service.stores.length; i++) {
+        if (service.stores[i]._id === response.data._id) {
+          service.stores[i] = response.data;
+          break;
+        }
+      }
+    })
     .catch(err => $log.error(err.message));
   };
 
