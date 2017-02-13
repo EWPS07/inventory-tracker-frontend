@@ -23,7 +23,7 @@ function employeeService($q, $log, $http, authService) {
         return $http.post(url, employee, config)
         .then( response => {
             $log.log('success:', response.data);
-            return setToken(response.data);
+            return authservice.setToken(response.data);
         })
         .catch( err => {
             $log.error('ERROR:', err.message);
