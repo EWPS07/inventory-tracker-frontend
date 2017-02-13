@@ -62,4 +62,38 @@ function employeeService($q, $log, $http, authService) {
             return $q.reject(err);
         });
     };
+
+    service.updateEmployee = function(employeeID, employeeData) {
+        $log.debug('employeeService.updateEmployee()');
+
+        return authService.getToken()
+        .then( token => {
+            let url = `${__API_URL__}/api/employee/${employeeID}`;
+            let config = {
+                headers: {
+                    Accept: 'application/json',
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            };
+
+            return $http.put(url, employeeData, config);
+        })
+        .then( response => {
+            for (let i = 0; i < service.employees.length; i++) {
+                let current = service.employees[i];
+
+                if (current._id === employeeID) {
+                    service.employees[i] = response.data;
+                    break;
+                }
+            };
+
+            return response.data;
+        })
+        .catch( err => {
+            $log.error('ERROR:', err.message);
+            return $q.reject(err);
+        });
+    };
 };
