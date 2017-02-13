@@ -96,4 +96,36 @@ function employeeService($q, $log, $http, authService) {
             return $q.reject(err);
         });
     };
+
+    service.removeEmployee = function(employeeID) {
+        $log.debug('employeeService.removeEmployee()');
+
+        return authService.getToken()
+        .then( token => {
+            let url = `${__API_URL__}/api/employee/${employeeID}`
+            let config = {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            };
+
+            return $http.delete(url, config);
+        })
+        .then( response => {
+            for (let i = 0; i < service.employees.length; i++) {
+                let current = service.employees[i];
+
+                if (current._id === employeeID) {
+                    service.employees.splice(i, 1);
+                    break;
+                }
+            };
+        })
+        .catch( err => {
+            $log.error('ERROR:', err.message);
+            return $q.reject(err);
+        });
+    };
+
+    return service;
 };
