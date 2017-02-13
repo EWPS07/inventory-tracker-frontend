@@ -17,12 +17,16 @@ function storeService($log, $http) {
   };
 
   service.addStore = function(store) {
+    $log.debug('storeService.addStore');
+
     return $http.post(baseUrl, store, config)
     .then(response => service.stores.push(response.data))
     .catch(err => $log.error(err.message));
   };
 
   service.updateStore = function(store) {
+    $log.debug('storeService.updateStore');
+
     return $http.put(`${baseUrl}/${store._id}`, store, config)
     .then(response => {
       for (var i = 0; i < service.stores.length; i++) {
@@ -32,6 +36,14 @@ function storeService($log, $http) {
         }
       }
     })
+    .catch(err => $log.error(err.message));
+  };
+
+  service.getStores = function() {
+    $log.debug('storeService.getStores');
+
+    return $http.get(baseUrl, config)
+    .then(response => service.stores = response.data)
     .catch(err => $log.error(err.message));
   };
 
