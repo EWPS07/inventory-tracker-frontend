@@ -16,4 +16,12 @@ function cartOrderService($log, $http, $q) {
     return $http.post(`${url}/${customerID}/${storeID}/cart-order`)
     .catch(err => $log.error(err.message));
   };
+
+  service.getOrder = function(orderID) {
+    $log.log('cartOrderService.getOrder');
+
+    return $http.get(`${url}/${orderID}`)
+    .then(response => $q.resolve(response.data))
+    .catch(err => $log.error(err.message));
+  };
 }
