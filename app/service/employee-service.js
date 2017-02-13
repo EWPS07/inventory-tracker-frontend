@@ -6,14 +6,37 @@ function employeeService($q, $log, $http, authService) {
     $log.debug('employeeService');
 
     let service = {};
+    let token = null;
     service.employees = [];
 
-    service.addEmployee = function(employee) {
-        $log.debug('employeeService.addEmployee()');
+    service.registerEmployee = function(storeID, employee) {
+        $log.debug('employeeService.registerEmployee()');
+
+        let url = `${__API_URL__}/api/store/${storeID}/employee`;
+        let config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json'
+            }
+        };
+
+        return $http.post(url, employee, config)
+        .then( response => {
+            $log.log('success:', response.data);
+            return setToken(response.data);
+        })
+        .catch( err => {
+            $log.error('ERROR:', err.message);
+            return $q.reject(err);
+        });
+    };
+
+    service.addEmployeeAsAdmin = function(storeID, employee) {
+        $log.debug('employeeService.addEmployeeAsAdmin()');
 
         return authService.getToken()
         .then( token => {
-            let url = `${__API_URL__}/api/employee`;
+            let url = `${__API_URL__}/api/store/${storeID}/employee`;
             let config = {
                 headers: {
                     Accept: 'application/json',
@@ -37,12 +60,12 @@ function employeeService($q, $log, $http, authService) {
         });
     };
 
-    service.fetchEmployees = function() {
+    service.fetchEmployees = function(storeID) {
         $log.debug('employeeService.fetchEmployees()');
 
         return authService.getToken()
         .then( token => {
-            let url = `${__API_URL__}/api/employee`;
+            let url = `${__API_URL__}/api/store/${storeID}/employee`;
             let config = {
                 headers: {
                     Accept: 'application/json',
@@ -63,12 +86,12 @@ function employeeService($q, $log, $http, authService) {
         });
     };
 
-    service.updateEmployee = function(employeeID, employeeData) {
+    service.updateEmployee = function(storeID, employeeID, employeeData) {
         $log.debug('employeeService.updateEmployee()');
 
         return authService.getToken()
         .then( token => {
-            let url = `${__API_URL__}/api/employee/${employeeID}`;
+            let url = `${__API_URL__}/api/store/${storeID}/employee/${employeeID}`;
             let config = {
                 headers: {
                     Accept: 'application/json',
@@ -97,12 +120,12 @@ function employeeService($q, $log, $http, authService) {
         });
     };
 
-    service.removeEmployee = function(employeeID) {
+    service.removeEmployee = function(storeID, employeeID) {
         $log.debug('employeeService.removeEmployee()');
 
         return authService.getToken()
         .then( token => {
-            let url = `${__API_URL__}/api/employee/${employeeID}`
+            let url = `${__API_URL__}/api/store/${storeID}/employee/${employeeID}`;
             let config = {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -125,6 +148,14 @@ function employeeService($q, $log, $http, authService) {
             $log.error('ERROR:', err.message);
             return $q.reject(err);
         });
+    };
+
+    service.logoutEmployee = function() {
+        $log.debug('employeeService.logoutEmployee()');
+
+        $window.localStorage.removeItem('token');
+        token = null;
+        return $q.resolve();
     };
 
     return service;
