@@ -47,5 +47,13 @@ function storeService($log, $http) {
     .catch(err => $log.error(err.message));
   };
 
+  service.deleteStore = function(storeID) {
+    $log.debug('storeService.deleteStore');
+
+    return $http.delete(`${baseUrl}/${storeID}`, config)
+    .then(() => service.stores = service.stores.filter(_store => _store._id !== storeID))
+    .catch(err => $log.error(err.message));
+  };
+
   return service;
 }
