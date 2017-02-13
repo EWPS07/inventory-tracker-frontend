@@ -6,7 +6,6 @@ function cartOrderService($log, $http, $q) {
   $log.debug('Cart order service');
 
   let service = {};
-  service.cartProducts = [];
 
   let url = `${__API_URL__}/api/orders`;
   let config = {
