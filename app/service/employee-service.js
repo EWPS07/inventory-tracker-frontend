@@ -36,4 +36,30 @@ function employeeService($q, $log, $http, authService) {
             return $q.reject(err);
         });
     };
+
+    service.fetchEmployees = function() {
+        $log.debug('employeeService.fetchEmployees()');
+
+        return authService.getToken()
+        .then( token => {
+            let url = `${__API_URL__}/api/employee`;
+            let config = {
+                headers: {
+                    Accept: 'application/json',
+                    Authorization: `Bearer ${token}`
+                }
+            };
+
+            return $http.get(url, config);
+        })
+        .then( response => {
+            $log.log('success: employee data retrieved');
+            service.employees = response.data;
+            return service.employees;
+        })
+        .catch( err => {
+            $log.error('ERROR:', err.message);
+            return $q.reject(err);
+        });
+    };
 };
