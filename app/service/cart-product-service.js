@@ -25,11 +25,23 @@ function cartProductService($q, $log, $http, authService, customerService, store
     });
   };
 
-  service.updateCartProduct = function(productID) {
+  service.updateCartProduct = function(products, productID, productData) {
     $log.debug('cartProductService.putCartProduct()');
 
-    return $http.put(`${__API_URL__}/products/${productID}`, config)
-    .then(res => $q.resolve(res.data))
+    return $http.put(`${__API_URL__}/products/${productID}`, productData, config)
+    .then( res => {
+    for (let i = 0; i < service.currentProduct.length; i++) {
+       let current = service.currentProduct[i];
+
+       if (current._id === productID) {
+           service.currentProducts[i] = res.data;
+           break;
+       }
+    };
+
+    return res.data;
+    })
+
     .catch(err => $log.error(err.message));
   };
 
@@ -37,6 +49,15 @@ function cartProductService($q, $log, $http, authService, customerService, store
     $log.debug('cartProductService.deleteCartProduct()');
 
     return $http.delete(`${url}/products/${productID}`, config)
+    .then( res => {
+    for (let i = 0; i < service.currentProduct.length; i++) {
+       let current = service.currentProduct[i];
+
+       if (current._id === productID) {
+           service.currentProducts.splice(i, 1);
+           break;
+       }
+    };
     .catch(err => $log.error(err.message));
   };
 }
