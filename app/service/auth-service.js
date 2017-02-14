@@ -31,13 +31,13 @@ function authService($q, $log, $http, $window) {
     return $q.reject(new Error('token not found'));
   };
 
-  service.logout = function() {
-    $log.debug('authService.logout()');
-
-    $window.localStorage.removeItem('token');
-    token = null;
-    return $q.resolve();
-  };
+  // service.logout = function() {
+  //   $log.debug('authService.logout()');
+  //
+  //   $window.localStorage.removeItem('token');
+  //   token = null;
+  //   return $q.resolve();
+  // };
 
   // service.signup = function(user) {
   //   $log.debug('authService.signup()');
