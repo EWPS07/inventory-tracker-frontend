@@ -1,3 +1,17 @@
 <section class="employee-dashboard">
-    <!--TODO: BUILD OUT MARKUP FOR EMPLOYEE DASHBOARD VIEW-->
+    <h2>employee dashboard</h2>
+
+    <input ng-model="employeeDashboardCtrl.query" type="text" placeholder="search employees">
+
+    <div class="employee-record-container">
+        <ul>
+            <!--TODO: BUILD OUT EMPLOYEE RECORD COMPONENT-->
+            <employee-record
+              ng-repeat="record in employeeDashboardCtrl.employees | search: employeeDashboardCtrl.query"
+              employee="record"
+              delete-done="employeeDashboardCtrl.employeeDeleteDone(employeeData)"
+              ng-click="employeeDashboardCtrl.currentEmployee = record">
+            </employee-record>
+        </ul>
+    </div>
 </section>
