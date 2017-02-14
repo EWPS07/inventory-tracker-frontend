@@ -7,6 +7,7 @@ function storeService($log, $http, $q) {
 
   let service = {};
   service.stores = [];
+  service.currentStore = {};
 
   let baseUrl = `${__API_URL__}/api/store`;
   let config = {
@@ -16,6 +17,7 @@ function storeService($log, $http, $q) {
     }
   };
 
+  // ADD STORE -----------------------------------------------------------------
   service.addStore = function(store) {
     $log.debug('storeService.addStore');
 
@@ -24,6 +26,7 @@ function storeService($log, $http, $q) {
     .catch(err => $log.error(err.message));
   };
 
+  // EDIT STORE ----------------------------------------------------------------
   service.updateStore = function(store) {
     $log.debug('storeService.updateStore');
 
@@ -39,6 +42,7 @@ function storeService($log, $http, $q) {
     .catch(err => $log.error(err.message));
   };
 
+  // GET ALL STORES ------------------------------------------------------------
   service.getStores = function() {
     $log.debug('storeService.getStores');
 
@@ -47,14 +51,20 @@ function storeService($log, $http, $q) {
     .catch(err => $log.error(err.message));
   };
 
+  // GET SPECIFIC STORE --------------------------------------------------------
   service.getStore = function(storeID) {
     $log.debug('storeService.getStore');
 
     return $http.get(`${baseUrl}/${storeID}`, config)
-    .then(response => $q.resolve(response.data))
+    .then( response => {
+      service.currentStore = response.data;
+      $q.resolve(response.data)
+      }
+    )
     .catch(err => $log.error(err.message));
   };
 
+  // DELETE A STORE ------------------------------------------------------------
   service.deleteStore = function(storeID) {
     $log.debug('storeService.deleteStore');
 
