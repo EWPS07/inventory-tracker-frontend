@@ -7,20 +7,26 @@ module.exports = {
 };
 
 function StoreLocationController($log, storeService, customerService) {
-  storeService.getStores();
+  $log.log('Store Location Controller');
 
-  if (storeService.stores) {
-    this.currentStore = storeService.stores[0];
-    storeService.currentStore = storeService.stores[0];
-    this.allStores = storeService.stores;
-  }
+  storeService.getStores()
+  .then(() => {
+    if (storeService.stores) {
+      this.currentStore = storeService.stores[0];
+      storeService.currentStore = storeService.stores[0];
+      this.allStores = storeService.stores;
+      this.currentStoreNumber = this.currentStore.storeNumber;
+    }
 
-  if (customerService.currentCustomer.favoriteStore) {
-    storeService.currentStore = storeService.stores.find(_store => _store.storeNumber === customerService.currentCustomer.favoriteStore);
-    this.currentStore = storeService.currentStore;
-  }
+    if (customerService.currentCustomer.favoriteStore) {
+      storeService.currentStore = storeService.stores.find(_store => _store.storeNumber === customerService.currentCustomer.favoriteStore);
+      this.currentStore = storeService.currentStore;
+      this.currentStoreNumber = this.currentStore.storeNumber;
+    }
+  });
 
   this.changeStore = function(storeNumber) {
+    $log.log('storeLocationCtrl.changeStore');
     storeService.currentStore = storeService.stores.find(_store => _store.storeNumber === storeNumber);
     this.currentStore = storeService.currentStore;
   };

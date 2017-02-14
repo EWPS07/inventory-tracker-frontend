@@ -43,7 +43,10 @@ function storeService($log, $http, $q) {
     $log.debug('storeService.getStores');
 
     return $http.get(baseUrl, config)
-    .then(response => service.stores = response.data)
+    .then(response => {
+      service.stores = response.data;
+      return $q.resolve(response.data);
+    })
     .catch(err => $log.error(err.message));
   };
 

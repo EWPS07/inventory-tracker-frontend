@@ -7,8 +7,9 @@
 
     <div>
       <select ng-model="storeLocationCtrl.currentStoreNumber" ng-change="storeLocationCtrl.changeStore(storeLocationCtrl.currentStoreNumber)">
-        <option ng-repeat="store in storeLocationCtrl.allStores" value="store.storeNumber">{{store.storeNumber}}</option>
+        <option ng-repeat="store in storeLocationCtrl.allStores" value="{{store.storeNumber}}">{{store.storeNumber}}</option>
       </select>
+      <p>Change location</p>
     </div>
   </div>
 </section>
