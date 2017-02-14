@@ -1,42 +1,46 @@
 'use strict';
 
-module.exports = ['$q', '$log', '$http', inventoryProductService];
+module.exports = ['$q', '$log', '$http', 'storeService', inventoryProductService];
 
-function inventoryProductService($q, $log, $http) {
+function inventoryProductService($q, $log, $http, storeService) {
 
   let service = {};
+  service.currentInventory = storeService.currentStore.current;
 
-  // ADD NEW PRODUCT TO CURRENT INVENTORY
+  // ADD NEW PRODUCT TO CURRENT INVENTORY --------------------------------------
   service.addNewProduct = function(product) {
     $log.debug('inventoryProductService.addNewProduct()');
 
     let url = `${__API_URL__}/api/store/${storeID}/inventory`;
 
     return $http.post(url, product, config)
+    .then( res => res.data)
     .catch( err => $log.error(err.message));
   };
 
-  // ADD PRODUCT TO INVENTORY ORDER
+  // ADD PRODUCT TO INVENTORY ORDER --------------------------------------------
   service.addProductToInventoryOrder = function(product) {
     $log.debug('inventoryProductService.addProductToInventoryOrder()');
 
     let url = `${__API_URL__}/api/inventory-orders/${inventoryOrderID}/inventory`;
 
     return $http.post(url, product, config)
+    .then(res => res.data)
     .catch( err => $log.error(err.message));
   };
 
-  // ADD INVENTORY ORDER TO CURRENT INVENTORY
+  // ADD INVENTORY ORDER TO CURRENT INVENTORY ----------------------------------
   service.addInventoryOrderToCurrentInventory = function(inventoryOrderID) {
     $log.debug('inventoryProductService.addInventoryOrderToCurrentInventory()');
 
     let url = `${__API_URL__}/api/inventory-orders/${inventoryOrderID}/complete-order`;
 
     return $http.post(url, config)
+    .then( res => res.data)
     .catch(err => $log.error(err.message));
   };
 
-  // UPDATE INVENTORY PRODUCT
+  // UPDATE INVENTORY PRODUCT --------------------------------------------------
   service.updateProduct = function(product, inventoryID) {
     $log.debug('inventoryProductService.updateProduct()');
 
@@ -46,13 +50,26 @@ function inventoryProductService($q, $log, $http) {
     .catch(err => $log.error(err.message));
   };
 
-  // DELETE PRODUCT FROM INVENTORY
+  // DELETE PRODUCT FROM UI ----------------------------------------------------
+  service.deleteFromUI = function(arr, id) {
+    for(let i=0; i<arr.length; i++) {
+      if(arr[i]._id === id) {
+        arr.splice([i], 1);
+      }
+    }
+    return arr;
+  }
+
+  // DELETE PRODUCT FROM INVENTORY ---------------------------------------------
   service.deleteProduct = function() {
     $log.debug('inventoryProductService.deleteProduct()');
 
     let url = `${__API_URL_}/api/inventory/${inventoryID}`;
 
     return $http.delete(url, config)
+    .then(
+      this.deleteFromUI(this.currentInventory, inventoryID)
+    )
     .catch(err => $log.error(err.message));
   };
 
