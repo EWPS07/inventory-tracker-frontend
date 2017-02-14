@@ -15,7 +15,7 @@ function inventoryProductService($q, $log, $http, storeService) {
 
     return $http.post(url, product, config)
     .then( res =>
-      this.currentInventory.push(res.data);
+      service.currentInventory.push(res.data);
     )
     .catch( err => $log.error(err.message));
   };
@@ -39,7 +39,7 @@ function inventoryProductService($q, $log, $http, storeService) {
 
     return $http.post(url, config)
     .then( res =>
-      this.currentInventory.push(res.data)
+      service.currentInventory.push(res.data)
     )
     .catch(err => $log.error(err.message));
   };
@@ -73,7 +73,7 @@ function inventoryProductService($q, $log, $http, storeService) {
 
     return $http.delete(url, config)
     .then(
-      this.deleteFromUI(this.currentInventory, inventoryID)
+      service.deleteFromUI(service.currentInventory, inventoryID)
     )
     .catch(err => $log.error(err.message));
   };

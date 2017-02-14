@@ -20,7 +20,7 @@ function inventoryOrderService($log, $http, $q, storeService) {
     let url = `${__API_URL__}/api/store/${storeID}/inventory-order`;
     return $http.post(url, config)
     .then(res => {
-      this.incoming.push(res.data);
+      service.incoming.push(res.data);
     })
     .catch(err => $log.error(err.message));
   };
@@ -44,10 +44,10 @@ function inventoryOrderService($log, $http, $q, storeService) {
 
     return $http.delete(url, config)
     .then(
-      this.deleteFromUI(this.incoming, inventoryOrderID)
+      this.deleteFromUI(service.incoming, inventoryOrderID)
     )
     .catch(err => $log.error(err.message));
   };
-
+  
   return service;
 };
