@@ -24,7 +24,7 @@ function customerService($location, $q, $log, $http, $window) {
     .then( res => {
       $log.log('sucess', res.data);
       service.currentCustomer = res.data;
-      return $q.resolve(); //TODO: what am I returning?
+      return $q.resolve();
     })
     .catch(err => {
       $log.error('failure', err.message);
@@ -59,7 +59,7 @@ function customerService($location, $q, $log, $http, $window) {
   service.updateCustomer = function(user, customerID) {
     $log.debug('customerService.updateCustomer()');
 
-    let url = `${__API_URL__}/api/signin`;
+    let url = `${__API_URL__}/api/customer/${customerID}`;
     let base64 = $window.btoa(`${user.username}:${user.password}`);
     let config = {
       headers: {
@@ -68,19 +68,7 @@ function customerService($location, $q, $log, $http, $window) {
       }
     };
 
-    return $http.get(url, user, config)
-    .then( res => {
-      for (let i = 0; i < service.currentCustomer.length; i++) {
-        let current = service.currentCustomer[i];
-
-        if (current._id === customerID) {
-          service.currentCustomer[i] = res.data;
-          break;
-        }
-      }
-
-      return res.data;
-    })
+    return $http.put(url, user, config)
     .catch( err => {
       $log.error(err.message);
       return $q.reject(err);
@@ -90,7 +78,7 @@ function customerService($location, $q, $log, $http, $window) {
   service.removeCustomer = function(user, customerID) {
     $log.debug('customerService.removeCustomer()');
 
-    let url = `${__API_URL__}/api/signin`;
+    let url = `${__API_URL__}/api/customer/${customerID}`;
     let base64 = $window.btoa(`${user.username}:${user.password}`);
     let config = {
       headers: {
@@ -99,17 +87,7 @@ function customerService($location, $q, $log, $http, $window) {
       }
     };
 
-    return $http.delete(url, user, config)
-    .then( () => {
-      for (let i = 0; i < service.currentCustomer.length; i++) {
-        let current = service.currentCustomer[i];
-
-        if (current._id === customerID) {
-          service.currentCustomer.splice(i, 1);
-          break;
-        }
-      }
-    })
+    return $http.delete(url, config)
     .catch( err => {
       $log.error(err.message);
       return $q.reject(err);
