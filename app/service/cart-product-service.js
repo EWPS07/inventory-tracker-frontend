@@ -6,6 +6,7 @@ function cartProductService($q, $log, $http, authService, customerService, store
   $log.debug('cartProductService()');
 
   let service = {};
+  let customerService.currentProduct = customerService.currentProduct.orders[0];
 
   let url = `${__API_URL__}/api`;
   let config = {
@@ -24,7 +25,7 @@ function cartProductService($q, $log, $http, authService, customerService, store
     });
   };
 
-  service.putCartProduct = function(productID) {
+  service.updateCartProduct = function(productID) {
     $log.debug('cartProductService.putCartProduct()');
 
     return $http.put(`${__API_URL__}/products/${productID}`, config)
@@ -32,8 +33,8 @@ function cartProductService($q, $log, $http, authService, customerService, store
     .catch(err => $log.error(err.message));
   };
 
-  service.deleteOrder = function(productID) {
-    $log.debug('cartProductService.deleteOrder()');
+  service.deleteCartProduct = function(productID) {
+    $log.debug('cartProductService.deleteCartProduct()');
 
     return $http.delete(`${url}/products/${productID}`, config)
     .catch(err => $log.error(err.message));
