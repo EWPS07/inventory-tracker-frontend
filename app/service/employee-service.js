@@ -3,160 +3,160 @@
 module.exports = ['$q', '$log', '$http', 'authService', employeeService];
 
 function employeeService($q, $log, $http, authService) {
-    $log.debug('employeeService');
+  $log.debug('employeeService');
 
-    let service = {};
-    let token = null;
-    service.employees = [];
+  let service = {};
+  let token = null;
+  service.employees = [];
 
-    service.registerEmployee = function(storeID, employee) {
-        $log.debug('employeeService.registerEmployee()');
+  service.registerEmployee = function(storeID, employee) {
+    $log.debug('employeeService.registerEmployee()');
 
-        let url = `${__API_URL__}/api/store/${storeID}/employee`;
-        let config = {
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json'
-            }
-        };
-
-        return $http.post(url, employee, config)
-        .then( response => {
-            $log.log('success:', response.data);
-            return authservice.setToken(response.data);
-        })
-        .catch( err => {
-            $log.error('ERROR:', err.message);
-            return $q.reject(err);
-        });
+    let url = `${__API_URL__}/api/store/${storeID}/employee`;
+    let config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      }
     };
 
-    service.addEmployeeAsAdmin = function(storeID, employee) {
-        $log.debug('employeeService.addEmployeeAsAdmin()');
+    return $http.post(url, employee, config)
+    .then( response => {
+      $log.log('success:', response.data);
+      return authservice.setToken(response.data);
+    })
+    .catch( err => {
+      $log.error('ERROR:', err.message);
+      return $q.reject(err);
+    });
+  };
 
-        return authService.getToken()
-        .then( token => {
-            let url = `${__API_URL__}/api/store/${storeID}/employee`;
-            let config = {
-                headers: {
-                    Accept: 'application/json',
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                }
-            };
+  service.addEmployeeAsAdmin = function(storeID, employee) {
+    $log.debug('employeeService.addEmployeeAsAdmin()');
 
-            return $http.post(url, employee, config);
-        })
-        .then( response => {
-            $log.log('sucess: employee added');
+    return authService.getToken()
+    .then( token => {
+      let url = `${__API_URL__}/api/store/${storeID}/employee`;
+      let config = {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      };
 
-            let employee = response.data;
-            service.employees.unshift(employee);
-            return employee;
-        })
-        .catch( err => {
-            $log.error('ERROR:', err.message);
-            return $q.reject(err);
-        });
-    };
+      return $http.post(url, employee, config);
+    })
+    .then( response => {
+      $log.log('sucess: employee added');
 
-    service.fetchEmployees = function(storeID) {
-        $log.debug('employeeService.fetchEmployees()');
+      let employee = response.data;
+      service.employees.unshift(employee);
+      return employee;
+    })
+    .catch( err => {
+      $log.error('ERROR:', err.message);
+      return $q.reject(err);
+    });
+  };
 
-        return authService.getToken()
-        .then( token => {
-            let url = `${__API_URL__}/api/store/${storeID}/employee`;
-            let config = {
-                headers: {
-                    Accept: 'application/json',
-                    Authorization: `Bearer ${token}`
-                }
-            };
+  service.fetchEmployees = function(storeID) {
+    $log.debug('employeeService.fetchEmployees()');
 
-            return $http.get(url, config);
-        })
-        .then( response => {
-            $log.log('success: employee data retrieved');
-            service.employees = response.data;
-            return service.employees;
-        })
-        .catch( err => {
-            $log.error('ERROR:', err.message);
-            return $q.reject(err);
-        });
-    };
+    return authService.getToken()
+    .then( token => {
+      let url = `${__API_URL__}/api/store/${storeID}/employee`;
+      let config = {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      };
 
-    service.updateEmployee = function(storeID, employeeID, employeeData) {
-        $log.debug('employeeService.updateEmployee()');
+      return $http.get(url, config);
+    })
+    .then( response => {
+      $log.log('success: employee data retrieved');
+      service.employees = response.data;
+      return service.employees;
+    })
+    .catch( err => {
+      $log.error('ERROR:', err.message);
+      return $q.reject(err);
+    });
+  };
 
-        return authService.getToken()
-        .then( token => {
-            let url = `${__API_URL__}/api/store/${storeID}/employee/${employeeID}`;
-            let config = {
-                headers: {
-                    Accept: 'application/json',
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                }
-            };
+  service.updateEmployee = function(storeID, employeeID, employeeData) {
+    $log.debug('employeeService.updateEmployee()');
 
-            return $http.put(url, employeeData, config);
-        })
-        .then( response => {
-            for (let i = 0; i < service.employees.length; i++) {
-                let current = service.employees[i];
+    return authService.getToken()
+    .then( token => {
+      let url = `${__API_URL__}/api/store/${storeID}/employee/${employeeID}`;
+      let config = {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      };
 
-                if (current._id === employeeID) {
-                    service.employees[i] = response.data;
-                    break;
-                }
-            };
+      return $http.put(url, employeeData, config);
+    })
+    .then( response => {
+      for (let i = 0; i < service.employees.length; i++) {
+        let current = service.employees[i];
 
-            return response.data;
-        })
-        .catch( err => {
-            $log.error('ERROR:', err.message);
-            return $q.reject(err);
-        });
-    };
+        if (current._id === employeeID) {
+          service.employees[i] = response.data;
+          break;
+        }
+      };
 
-    service.removeEmployee = function(storeID, employeeID) {
-        $log.debug('employeeService.removeEmployee()');
+      return response.data;
+    })
+    .catch( err => {
+      $log.error('ERROR:', err.message);
+      return $q.reject(err);
+    });
+  };
 
-        return authService.getToken()
-        .then( token => {
-            let url = `${__API_URL__}/api/store/${storeID}/employee/${employeeID}`;
-            let config = {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            };
+  service.removeEmployee = function(storeID, employeeID) {
+    $log.debug('employeeService.removeEmployee()');
 
-            return $http.delete(url, config);
-        })
-        .then( response => {
-            for (let i = 0; i < service.employees.length; i++) {
-                let current = service.employees[i];
+    return authService.getToken()
+    .then( token => {
+      let url = `${__API_URL__}/api/store/${storeID}/employee/${employeeID}`;
+      let config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      };
 
-                if (current._id === employeeID) {
-                    service.employees.splice(i, 1);
-                    break;
-                }
-            };
-        })
-        .catch( err => {
-            $log.error('ERROR:', err.message);
-            return $q.reject(err);
-        });
-    };
+      return $http.delete(url, config);
+    })
+    .then( response => {
+      for (let i = 0; i < service.employees.length; i++) {
+        let current = service.employees[i];
 
-    service.logoutEmployee = function() {
-        $log.debug('employeeService.logoutEmployee()');
+        if (current._id === employeeID) {
+          service.employees.splice(i, 1);
+          break;
+        }
+      }
+    })
+    .catch( err => {
+      $log.error('ERROR:', err.message);
+      return $q.reject(err);
+    });
+  };
 
-        $window.localStorage.removeItem('token');
-        token = null;
-        return $q.resolve();
-    };
+  service.logoutEmployee = function() {
+    $log.debug('employeeService.logoutEmployee()');
 
-    return service;
+    $window.localStorage.removeItem('token');
+    token = null;
+    return $q.resolve();
+  };
+
+  return service;
 };
