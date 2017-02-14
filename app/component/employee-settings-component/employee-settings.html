@@ -1,0 +1,41 @@
+<section class="employee-settings">
+
+  <div class="current-info">
+    <ul>
+      <li>
+        <span>Name: {{ settingsCtrl.currentEmployee.name }}</span>
+      </li>
+      <li>
+        <span>Address: {{ settingsCtrl.currentEmployee.email }}</span>
+      </li>
+      <li>
+        <span>Email: {{ settingsCtrl.currentEmployee.address }}</span>
+      </li>
+    </ul>
+  </div>
+
+  <form class="new-info">
+    <fieldset>
+      <input
+        ng-model="settingsCtrl.currentEmployee.name"
+        class="input-default"
+        placeholder="Your name">
+
+      <input
+        ng-model="settingsCtrl.currentEmployee.address"
+        class="input-default"
+        placeholder="Your address">
+
+      <input
+        ng-model="settingsCtrl.currentEmployee.email"
+        class="input-default"
+        placeholder="Your email">
+
+      <button
+        class="btn btn-default"
+        ng-submit="settingsCtrl.updateEmployeeInfo()">
+        Confirm Changes
+      <button>
+    </fieldset>
+  </form>
+</section>
