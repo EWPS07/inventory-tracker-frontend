@@ -19,6 +19,7 @@ function cartOrderService($log, $http, $q) {
     $log.log('cartOrderService.createOrder');
 
     return $http.post(`${url}/${customerID}/${storeID}/cart-order`, config)
+    .then(response => $q.resolve(response.data))
     .catch(err => $log.error(err.message));
   };
 
