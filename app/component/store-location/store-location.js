@@ -11,17 +11,17 @@ function StoreLocationController($log, storeService, customerService) {
 
   if (storeService.stores) {
     this.currentStore = storeService.stores[0];
+    storeService.currentStore = storeService.stores[0];
     this.allStores = storeService.stores;
   }
 
   if (customerService.currentCustomer.favoriteStore) {
-    this.currentStore = storeService.stores.find(_store => _store.storeNumber === customerService.currentCustomer.favoriteStore);
+    storeService.currentStore = storeService.stores.find(_store => _store.storeNumber === customerService.currentCustomer.favoriteStore);
+    this.currentStore = storeService.currentStore;
   }
 
-  this.changeStore = function(storeID) {
-    storeService.getStore(storeID)
-    .then(_store => this.currentStore = _store);
+  this.changeStore = function(storeNumber) {
+    storeService.currentStore = storeService.stores.find(_store => _store.storeNumber === storeNumber);
+    this.currentStore = storeService.currentStore;
   };
-
-
 }
