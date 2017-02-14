@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['$log', '$http', storeService];
+module.exports = ['$log', '$http', '$q', storeService];
 
-function storeService($log, $http) {
+function storeService($log, $http, $q) {
   $log.debug('Store service');
 
   let service = {};
@@ -44,6 +44,14 @@ function storeService($log, $http) {
 
     return $http.get(baseUrl, config)
     .then(response => service.stores = response.data)
+    .catch(err => $log.error(err.message));
+  };
+
+  service.getStore = function(storeID) {
+    $log.debug('storeService.getStore');
+
+    return $http.get(`${baseUrl}/${storeID}`, config)
+    .then(response => $q.resolve(response.data))
     .catch(err => $log.error(err.message));
   };
 

@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = ['$stateProvider', '$urlRouterProvider', routerProvider];
+module.exports = ['$stateProvider', '$urlRouterProvider', routerConfig];
 
 function routerConfig($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.when('', '/join#signup');
@@ -28,4 +28,4 @@ function routerConfig($stateProvider, $urlRouterProvider) {
   states.forEach( state => {
     $stateProvider.state(state);
   });
-};
+}
