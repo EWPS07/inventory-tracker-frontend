@@ -1,17 +1,29 @@
 <section class="employee-dashboard">
     <h2>employee dashboard</h2>
 
-    <input ng-model="employeeDashboardCtrl.query" type="text" placeholder="search employees">
+    <!--TODO: BUILD OUT EMPLOYEE PROFILE COMPONENT-->
+    <employee-profile></employee-profile>
 
-    <div class="employee-record-container">
-        <ul>
-            <!--TODO: BUILD OUT EMPLOYEE RECORD COMPONENT-->
-            <employee-record
-              ng-repeat="record in employeeDashboardCtrl.employees | search: employeeDashboardCtrl.query"
-              employee="record"
-              delete-done="employeeDashboardCtrl.employeeDeleteDone(employeeData)"
-              ng-click="employeeDashboardCtrl.currentEmployee = record">
-            </employee-record>
-        </ul>
+    <!--ALL FUNCTIONALITY BELOW THIS COMMENT IS FOR ADMINS ONLY-->
+    <div class="employee-admin-container">
+        <!--NEED LOGIC TO MAKE NG-HIDE FUNCTIONALITY WORK-->
+    <!--<div class="employee-admin-container" ng-hide="!employeeDashboardCtrl.admin">-->
+
+    <!--TODO: BUILD OUT CREATE EMPLOYEE RECORD COMPONENT-->
+        <create-employee-record></create-employee-record>
+
+        <input ng-model="employeeDashboardCtrl.query" type="text" placeholder="search employees">
+
+        <div class="employee-record-container">
+            <ul>
+                <!--TODO: BUILD OUT EMPLOYEE RECORD COMPONENT-->
+                <employee-record
+                ng-repeat="record in employeeDashboardCtrl.employees | search: employeeDashboardCtrl.query"
+                employee="record"
+                delete-done="employeeDashboardCtrl.employeeDeleteDone(employeeData)"
+                ng-click="employeeDashboardCtrl.currentEmployee = record">
+                </employee-record>
+            </ul>
+        </div>
     </div>
 </section>
