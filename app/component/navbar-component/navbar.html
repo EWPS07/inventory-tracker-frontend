@@ -1,11 +1,15 @@
 <section class='main-nav'>
-
+  
+  <!--TODO: ADD LOGO IMAGE TO ASSETS-->
   <img src="../../assets/img/it-logo.png" alt="inventory tracker logo">
   <h2>inventory tracker</h2>
 
   <nav>
     <div ng-hide="navbarCtrl.hideButtons">
-      <button class="btn-std" ng-click="navbarCtrl.logout()">logout</button>
+      <!--TODO: ADD URL FOR PROFILE, CART-->
+      <span class="profile btn-std"><a href="#">my profile</a></span>
+      <span class="cart btn-std"><a href="#">cart</a></span>
+      <button class="logout btn-std" ng-click="navbarCtrl.logout()">logout</button>
     </div>
   </nav>
 </section>
