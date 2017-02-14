@@ -1,12 +1,11 @@
 'use strict';
 
-module.exports = ['$q', '$log', '$http', 'storeService', 'cartOrderService', cartProductService];
+module.exports = ['$q', '$log', '$http', cartProductService];
 
-function cartProductService($q, $log, $http, authService, customerService, storeService, cartOrderService) {
+function cartProductService($q, $log, $http) {
   $log.debug('cartProductService()');
 
   let service = {};
-  let customerService.currentProduct = customerService.currentProduct.orders[0];
 
   let url = `${__API_URL__}/api`;
   let config = {
@@ -16,48 +15,32 @@ function cartProductService($q, $log, $http, authService, customerService, store
     }
   };
 
-  service.createCartProduct = function(cartOrderID, storeID) {
+  service.createCartProduct = function(cartOrderID, storeID, productData) {
     $log.debug('cartProductService.createCartProduct()');
 
-    return $http.post(`${url}/orders/${cartOrderID}/${storeID}/cart`, config)
-    .catch( err => {
-      $log.error(err.message);
-    });
+    return $http.post(`${url}/orders/${cartOrderID}/${storeID}/cart`, productData, config)
+    .then(response => $q.resolve(response.data))
+    .catch( err => $log.error(err.message));
   };
 
-  service.updateCartProduct = function(products, productID, productData) {
-    $log.debug('cartProductService.putCartProduct()');
+  service.updateCartProduct = function(productID, productData) {
+    $log.debug('cartProductService.updateCartProduct');
 
-    return $http.put(`${__API_URL__}/products/${productID}`, productData, config)
-    .then( res => {
-    for (let i = 0; i < service.currentProduct.length; i++) {
-       let current = service.currentProduct[i];
-
-       if (current._id === productID) {
-           service.currentProducts[i] = res.data;
-           break;
-       }
-    };
-
-    return res.data;
-    })
-
+    return $http.put(`${url}/products/${productID}`, productData, config)
     .catch(err => $log.error(err.message));
   };
 
-  service.deleteCartProduct = function(productID) {
-    $log.debug('cartProductService.deleteCartProduct()');
-
-    return $http.delete(`${url}/products/${productID}`, config)
-    .then( res => {
-    for (let i = 0; i < service.currentProduct.length; i++) {
-       let current = service.currentProduct[i];
-
-       if (current._id === productID) {
-           service.currentProducts.splice(i, 1);
-           break;
-       }
-    };
+  service.deleteCartProduct = function(productArray, productID) {
+    return $http.delete(`${url}/products/${productID}`)
+    .then(() => {
+      for (var i = 0; i < productArray.length; i++) {
+        if (productArray[i]._id === productID) {
+          productArray.splice(i, 1);
+          break;
+        }
+      }
+      return productArray;
+    })
     .catch(err => $log.error(err.message));
   };
 }
