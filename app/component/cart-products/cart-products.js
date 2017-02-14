@@ -1,15 +1,24 @@
 'use strict';
 
 module.exports = {
-  template: require('./inventory-products.html'),
+  template: require('./cart-products.html'),
   controller: ['$log', 'cartProductService', 'storeService', 'cartOrderService', 'customerService', InventoryProductController],
-  controllerAs: 'inventoryProductCtrl'
+  controllerAs: 'cartProductCtrl'
 };
 
 function InventoryProductController($log, cartProductService, storeService, cartOrderService, customerService) {
   $log.log('Inventory Product Controller');
 
-  this.currentProducts = storeService.currentStore.current;
+  storeService.getStores()
+  .then(() => {
+    if (storeService.stores) storeService.currentStore = storeService.stores[0];
+
+    if (customerService.currentCustomer.favoriteStore) {
+      storeService.currentStore = storeService.stores.find(_store => _store.storeNumber === customerService.currentCustomer.favoriteStore);
+    }
+    this.currentProducts = storeService.currentStore.current;
+  });
+
 
   this.addToCart = function(productData) {
     if (customerService.currentCustomer.currentOrders.length > 0) {

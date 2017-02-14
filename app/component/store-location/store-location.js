@@ -6,14 +6,21 @@ module.exports = {
   controllerAs: 'storeLocationCtrl'
 };
 
-function StoreLocationController($log, storeService) {
+function StoreLocationController($log, storeService, customerService) {
   $log.log('Store Location Controller');
 
-  if (storeService.currentStore) {
+  storeService.getStores()
+  .then(() => {
+    if (storeService.stores) storeService.currentStore = storeService.stores[0];
+
+    if (customerService.currentCustomer.favoriteStore) {
+      storeService.currentStore = storeService.stores.find(_store => _store.storeNumber === customerService.currentCustomer.favoriteStore);
+    }
+
     this.currentStore = storeService.currentStore;
-    this.currentStoreNumber = this.currentStore.storeNumber;
     this.allStores = storeService.stores;
-  }
+    this.currentStoreNumber = this.currentStore.storeNumber;
+  });
 
   this.changeStore = function(storeNumber) {
     $log.log('storeLocationCtrl.changeStore');
