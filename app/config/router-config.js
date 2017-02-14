@@ -22,6 +22,13 @@ function routerConfig($stateProvider, $urlRouterProvider) {
       template: require('../view/landing/landing.html'),
       controller: 'LandingController',
       controllerAs: 'landingCtrl'
+    },
+    {
+      name: 'shopping',
+      url: '/shopping',
+      template: require('../view/shopping/shopping.html'),
+      controller: 'ShoppingController',
+      controllerAs: 'shoppingCtrl'
     }
   ];
 
