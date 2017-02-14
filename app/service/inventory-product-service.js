@@ -14,7 +14,9 @@ function inventoryProductService($q, $log, $http, storeService) {
     let url = `${__API_URL__}/api/store/${storeID}/inventory`;
 
     return $http.post(url, product, config)
-    .then( res => res.data)
+    .then( res =>
+      this.currentInventory.push(res.data);
+    )
     .catch( err => $log.error(err.message));
   };
 
@@ -36,7 +38,9 @@ function inventoryProductService($q, $log, $http, storeService) {
     let url = `${__API_URL__}/api/inventory-orders/${inventoryOrderID}/complete-order`;
 
     return $http.post(url, config)
-    .then( res => res.data)
+    .then( res =>
+      this.currentInventory.push(res.data)
+    )
     .catch(err => $log.error(err.message));
   };
 
