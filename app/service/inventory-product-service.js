@@ -8,23 +8,33 @@ function inventoryProductService($q, $log, $http, storeService) {
   service.currentInventory = storeService.currentStore.current;
 
   // ADD NEW PRODUCT TO CURRENT INVENTORY --------------------------------------
-  service.addNewProduct = function(product) {
+  service.addNewProduct = function(product, storeID) {
     $log.debug('inventoryProductService.addNewProduct()');
 
     let url = `${__API_URL__}/api/store/${storeID}/inventory`;
+    let config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      }
+    };
 
     return $http.post(url, product, config)
-    .then( res =>
-      service.currentInventory.push(res.data);
-    )
+    .then( res => service.currentInventory.push(res.data))
     .catch( err => $log.error(err.message));
   };
 
   // ADD PRODUCT TO INVENTORY ORDER --------------------------------------------
-  service.addProductToInventoryOrder = function(product) {
+  service.addProductToInventoryOrder = function(product, inventoryOrderID) {
     $log.debug('inventoryProductService.addProductToInventoryOrder()');
 
     let url = `${__API_URL__}/api/inventory-orders/${inventoryOrderID}/inventory`;
+    let config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      }
+    };
 
     return $http.post(url, product, config)
     .then(res => res.data)
@@ -36,6 +46,12 @@ function inventoryProductService($q, $log, $http, storeService) {
     $log.debug('inventoryProductService.addInventoryOrderToCurrentInventory()');
 
     let url = `${__API_URL__}/api/inventory-orders/${inventoryOrderID}/complete-order`;
+    let config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      }
+    };
 
     return $http.post(url, config)
     .then( res =>
@@ -49,6 +65,12 @@ function inventoryProductService($q, $log, $http, storeService) {
     $log.debug('inventoryProductService.updateProduct()');
 
     let url = `${__API_URL__}/api/inventory/${inventoryID}`;
+    let config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      }
+    };
 
     return $http.put(url, product, config)
     .catch(err => $log.error(err.message));
@@ -63,13 +85,19 @@ function inventoryProductService($q, $log, $http, storeService) {
       }
     }
     return arr;
-  }
+  };
 
   // DELETE PRODUCT FROM INVENTORY ---------------------------------------------
-  service.deleteProduct = function() {
+  service.deleteProduct = function(inventoryID) {
     $log.debug('inventoryProductService.deleteProduct()');
 
-    let url = `${__API_URL_}/api/inventory/${inventoryID}`;
+    let url = `${__API_URL__}/api/inventory/${inventoryID}`;
+    let config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      }
+    };
 
     return $http.delete(url, config)
     .then(
@@ -79,4 +107,4 @@ function inventoryProductService($q, $log, $http, storeService) {
   };
 
   return service;
-};
+}
