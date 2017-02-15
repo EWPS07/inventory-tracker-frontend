@@ -1,0 +1,10 @@
+<section class="settings">
+  <h2>Account Settings</h2>
+  <employee-settings
+    ng-if="settingsCtrl.employeeLoggedIn"
+  ></employee-settings>
+
+  <customer-settings
+    ng-if="settingsCtrl.customerLoggedIn"
+  ></customer-settings>
+</section>

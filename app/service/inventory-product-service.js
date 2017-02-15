@@ -5,6 +5,12 @@ module.exports = ['$q', '$log', '$http', 'storeService', inventoryProductService
 function inventoryProductService($q, $log, $http, storeService) {
 
   let service = {};
+  let config = {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    }
+  };
   service.currentInventory = storeService.currentStore.current;
 
   // ADD NEW PRODUCT TO CURRENT INVENTORY --------------------------------------

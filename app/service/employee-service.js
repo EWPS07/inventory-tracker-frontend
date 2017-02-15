@@ -8,6 +8,7 @@ function employeeService($q, $log, $http, authService) {
   let service = {};
   let token = null;
   service.employees = [];
+  service.currentEmployee = {};
 
   service.registerEmployee = function(storeID, employee) {
     $log.debug('employeeService.registerEmployee()');
@@ -30,6 +31,10 @@ function employeeService($q, $log, $http, authService) {
       return $q.reject(err);
     });
   };
+
+  service.employeeLogin = function(employee) {
+    $log.debug('employeeService.employeeLogin()');
+  }
 
   service.addEmployeeAsAdmin = function(storeID, employee) {
     $log.debug('employeeService.addEmployeeAsAdmin()');
