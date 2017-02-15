@@ -8,14 +8,14 @@ function SettingsController($log, storeService, employeeService, customerService
   $log.debug('SettingsController');
 
   this.currentStore = storeService.currentStore;
-  // this.currentEmployee = employeeService.currentEmployee;
-  // this.currentCustomer = customerService.currentCustomer;
-  this.currentEmployee = {
-    _id: '222222',
-    name: 'Jim',
-    email: 'jimMail@mail.com',
-    address: '666 somestreet where Jim lives'
-  };
+  this.currentEmployee = employeeService.currentEmployee;
+  this.currentCustomer = customerService.currentCustomer;
+  // this.currentEmployee = {
+  //   _id: '222222',
+  //   name: 'Jim',
+  //   email: 'jimMail@mail.com',
+  //   address: '666 somestreet where Jim lives'
+  // };
   // this.currentCustomer = {
   //   _id: '111111111',
   //   name: 'Jane',
@@ -26,15 +26,13 @@ function SettingsController($log, storeService, employeeService, customerService
   this.customerLoggedIn = false;
 
   this.updateCustomerInfo = function(user) {
-    // customerService.updateCustomer(user, this.currentCustomer._id);
-    this.currentCustomer = user;
+    customerService.updateCustomer(user, this.currentCustomer._id);
     $log.log(this.currentCustomer);
     return;
   };
 
   this.updateEmployeeInfo = function(employeeData) {
-    // employeeService.updateEmployee(this.currentStore._id, this.currentEmployee._id, employeeData);
-    this.currentEmployee = employeeData;
+    employeeService.updateEmployee(this.currentStore._id, this.currentEmployee._id, employeeData);
     $log.log(this.currentEmployee);
     return;
   };
