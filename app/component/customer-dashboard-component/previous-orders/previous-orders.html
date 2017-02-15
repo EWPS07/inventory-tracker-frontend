@@ -1,9 +1,9 @@
-<li class="previous-orders">
-  <div class="recent-previous-orders" ng-if="!customerPreviousOrdersCtrl.showEditPreviousOrders">
+<li class="previous-orders"
+  ng-repeat="customerService.currentCustomer.currentOrder">
 
   <div>
     <span class="orders-data-title">ORDERS #</span>
-    <span class="orders-data">{{ customerPreviousOrdersCtrl.customer. }} </span>
+    <span class="orders-data">{{ customerPreviousOrdersCtrl.currentCustomer.currentOrder. }} </span>
   </div>
 
   <div>
@@ -30,11 +30,6 @@
 
   <!-- TODO: have the recent orders display here. -->
 
-  <edit-customer
-    ng-if="customerPreviousOrdersCtrl.showEditPreviousOrders"
-    customer="customerPreviousOrdersCtrl.currentCustomer">
-  </edit-customer>
-
   <button
     class="btn-small"
     ng-click="customerPreviousOrdersCtrl.deleteCustomerPreviousOrders()"
@@ -46,6 +41,5 @@
     ng-show="!customerPreviousOrdersCtrl.showEditCustomerPreviousOrders">edit</button>
 
   <div class="clearfix"></div>
-
 
 </li>

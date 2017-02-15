@@ -9,7 +9,7 @@ module.exports = ['$log', '$rootScope', 'customerService', CustomerDashboardCont
 //   this.showSignup = url === '/join#signup' || url === '/join';
 // }
 
-function CustomerDashboardController($log, $rootScope, customerService) {
+function CustomerDashboardController($log, $rootScope, customerService){
   $log.debug('CustomerDashboardController');
 
   this.fetchAllOrders = function() {
