@@ -24,7 +24,7 @@ function employeeService($q, $log, $http, $window, authService) {
     return $http.post(url, employee, config)
     .then( response => {
       $log.log('success:', response.data);
-      return authservice.setToken(response.data);
+      return authService.setToken(response.data);
     })
     .catch( err => {
       $log.error('ERROR:', err.message);
@@ -36,7 +36,7 @@ function employeeService($q, $log, $http, $window, authService) {
     $log.debug('employeeService.loginEmployee()');
 
     let url = `${__API_URL__}/api/employee/signin`;
-    let base64 = $window.btoa(`${user.username}:${user.password}`);
+    let base64 = $window.btoa(`${employee.username}:${employee.password}`);
     let config = {
       headers: {
         Accept: 'application/json',
@@ -48,7 +48,7 @@ function employeeService($q, $log, $http, $window, authService) {
     .then( response => {
       service.currentEmployee = response.data;
       $log.log('success:', response.data);
-      return setToken(response.data);
+      return authService.setToken(response.data);
     })
     .catch( err => {
       $log.error('ERROR:', err.message);
@@ -135,7 +135,7 @@ function employeeService($q, $log, $http, $window, authService) {
           service.employees[i] = response.data;
           break;
         }
-      };
+      }
 
       return response.data;
     })
@@ -185,4 +185,4 @@ function employeeService($q, $log, $http, $window, authService) {
   };
 
   return service;
-};
+}
