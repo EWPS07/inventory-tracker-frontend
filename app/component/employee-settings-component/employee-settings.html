@@ -16,21 +16,33 @@
 
   <form class="new-info">
     <fieldset>
-      <input
-        ng-model="settingsCtrl.currentEmployee.name"
-        class="input-default"
-        placeholder="Your name">
+      <div class="input-group">
+        <input
+          ng-model="settingsCtrl.currentEmployee.name"
+          type="text"
+          class="input-default"
+          placeholder="Your name">
 
-      <input
-        ng-model="settingsCtrl.currentEmployee.address"
-        class="input-default"
-        placeholder="Your address">
+        <input
+          ng-model="settingsCtrl.currentEmployee.address"
+          type="text"
+          class="input-default"
+          placeholder="Your address">
 
-      <input
-        ng-model="settingsCtrl.currentEmployee.email"
-        class="input-default"
-        placeholder="Your email">
+        <input
+          ng-model="settingsCtrl.currentEmployee.email"
+          type="text"
+          class="input-default"
+          placeholder="Your email">
 
+      </div>
+
+      <div class="input-group">
+        <input
+          type="password"
+          class="input-default"
+          placeholder="password">
+      </div>
       <button
         class="btn btn-default"
         ng-submit="settingsCtrl.updateEmployeeInfo()">
