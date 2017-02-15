@@ -21,7 +21,6 @@ function cartProductService($q, $log, $http, customerService) {
     return $http.post(`${url}/orders/${cartOrderID}/${storeID}/cart`, productData, config)
     .then(response => {
       customerService.currentCustomer.currentOrders[0].products.push(response.data);
-      console.log(customerService.currentCustomer);
       return $q.resolve(response.data);
     })
     .catch( err => $log.error(err.message));
@@ -38,7 +37,6 @@ function cartProductService($q, $log, $http, customerService) {
           break;
         }
       }
-      console.log(customerService.currentCustomer);
       return $q.resolve(response.data);
     })
     .catch(err => $log.error(err.message));
