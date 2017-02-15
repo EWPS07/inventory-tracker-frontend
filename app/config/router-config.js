@@ -29,6 +29,13 @@ function routerConfig($stateProvider, $urlRouterProvider) {
       template: require('../view/shopping/shopping.html'),
       controller: 'ShoppingController',
       controllerAs: 'shoppingCtrl'
+    },
+    {
+      name: 'settings',
+      url: '/settings',
+      template: require('../view/settings/settings.html'),
+      controller: 'SettingsController',
+      controllerAs: 'settingsCtrl'
     }
   ];
 
