@@ -12,19 +12,10 @@ module.exports = ['$log', '$rootScope', 'customerService', CustomerDashboardCont
 function CustomerDashboardController($log, $rootScope, customerService){
   $log.debug('CustomerDashboardController');
 
-  this.fetchAllOrders = function() {
-    customerService.currentCustomer.currentOrder.reverse();
-  };
-
   this.orderDeleteDone = function(order) {
-    if (this.currentCustomer.currentOrder._id === order._id) {
-      this.currentCustomer.currentOrder = null;
+    if (this.currentCustomer.currentOrders._id === order._id) {
+      this.currentCustomer.currentOrders = null;
     }
   };
 
-  this.fetchAllOrders();
-
-  $rootScope.$on('$locationChangeSuccess', () => {
-    this.fetchAllOrders();
-  });
 }
