@@ -13,9 +13,9 @@ function CartProductController($log, cartProductService, storeService, cartOrder
   .then(() => {
     if (storeService.stores) storeService.currentStore = storeService.stores[0];
 
-    // if (customerService.currentCustomer.favoriteStore) {
-    //   storeService.currentStore = storeService.stores.find(_store => _store.storeNumber === customerService.currentCustomer.favoriteStore);
-    // }
+    if (customerService.currentCustomer.favoriteStore) {
+      storeService.currentStore = storeService.stores.find(_store => _store.storeNumber === customerService.currentCustomer.favoriteStore);
+    }
     this._storeService = storeService;
   });
 

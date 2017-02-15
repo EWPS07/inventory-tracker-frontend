@@ -61,9 +61,8 @@ function storeService($log, $http, $q) {
     return $http.get(`${baseUrl}/${storeID}`, config)
     .then( response => {
       service.currentStore = response.data;
-      $q.resolve(response.data)
-      }
-    )
+      return $q.resolve(response.data);
+    })
     .catch(err => $log.error(err.message));
   };
 
