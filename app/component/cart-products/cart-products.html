@@ -1,6 +1,6 @@
 <section class="cart-products">
   <ul>
-    <li ng-repeat="product in cartProductCtrl.currentProducts">
+    <li ng-repeat="(index, product) in cartProductCtrl.currentProducts track by $index">
       <div>
         <p>Name:
           <span>
@@ -14,13 +14,13 @@
           <span>
             {{product.desc}}
           </span>
-          <span ng-if="{{product.quantity}} < 6">
+          <span ng-if="product.quantity < 6">
             Only {{product.quantity}} left!
           </span>
         </p>
         <span>Quantity:</span>
-        <input type="number">
-        <button ng-click="cartProductCtrl.addToCart({{product}})">Add to cart</button>
+        <input type="number" ng-model="cartProductCtrl.currentProducts[index].buyQuantity">
+        <button ng-click="cartProductCtrl.addToCart(product)">Add to cart</button>
       </div>
     </li>
   </ul>

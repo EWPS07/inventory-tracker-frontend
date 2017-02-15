@@ -60,6 +60,21 @@ function inventoryProductService($q, $log, $http, storeService) {
     .catch(err => $log.error(err.message));
   };
 
+  service.getProduct = function(productID) {
+    $log.debug('inventoryProductService.getProduct');
+
+    let config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      }
+    };
+
+    return $http.get(`${__API_URL__}/api/inventory/${productID}`, config)
+    .then(response => $q.resolve(response.data))
+    .catch(err => $log.error(err.message));
+  };
+
   // UPDATE INVENTORY PRODUCT --------------------------------------------------
   service.updateProduct = function(product, inventoryID) {
     $log.debug('inventoryProductService.updateProduct()');

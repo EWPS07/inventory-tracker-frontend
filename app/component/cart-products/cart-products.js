@@ -29,6 +29,9 @@ function InventoryProductController($log, cartProductService, storeService, cart
         this.cartOrder = customerService.currentCustomer.currentOrders[customerService.currentCustomer.currentOrders.length - 1];
       }
     }
+    if (productData.buyQuantity > productData.quantity) {
+      //return You can't buy that
+    }
     cartProductService.createCartProduct(this.cartOrder._id, storeService.currentStore._id, productData);
   };
 }
