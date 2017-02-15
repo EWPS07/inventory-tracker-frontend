@@ -1,0 +1,21 @@
+<section class="landing">
+  <div class="join-container" ng-if="!landingCtrl.showSignup">
+    <div class="join-inner">
+      <signup></signup>
+      <p>
+        <span>already registered?</span>
+        <a href="/#/join#login" ng-click="landingCtrl.showSignup=false">sign in</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="join-container" ng-if="!landingCtrl.showSignup">
+    <div class="join-inner">
+      <login></login>
+      <p>
+        <span>new to inventory_tracker?</span>
+        <a href="/#!/join#signup" ng-click="landingCtrl.showSignup=true">register here</a>
+      </p>
+    </div>
+  </div>
+</section>
