@@ -1,37 +1,14 @@
 'use strict';
 
-module.exports = ['$q', '$log', '$http', '$window', employeeService];
+module.exports = ['$q', '$log', '$http', '$window', 'authService', employeeService];
 
-function employeeService($q, $log, $http, $window) {
+function employeeService($q, $log, $http, $window, authService) {
   $log.debug('employeeService');
 
   let service = {};
   let token = null;
   service.employees = [];
   service.currentEmployee = {};
-
-  function setToken(_token) {
-    $log.debug('employeeService.setToken()');
-
-    if(!_token) {
-      return $q.reject(new Error('no token'));
-    };
-
-    $window.localStorage.setItem('token', _token);
-    token = _token;
-    return $q.resolve(token);
-  }
-
-  service.getToken = function() {
-    $log.debug('employeeService.getToken');
-    if(token) {
-      return $q.resolve(token);
-    };
-
-    token = $window.localStorage.getItem('token');
-    if(token) return $q.resolve(token);
-    return $q.reject(new Error('token not found'));
-  };
 
   service.registerEmployee = function(storeID, employee) {
     $log.debug('employeeService.registerEmployee()');
@@ -47,7 +24,7 @@ function employeeService($q, $log, $http, $window) {
     return $http.post(url, employee, config)
     .then( response => {
       $log.log('success:', response.data);
-      return setToken(response.data.token);
+      return authService.setToken(response.data);
     })
     .catch( err => {
       $log.error('ERROR:', err.message);
@@ -71,7 +48,7 @@ function employeeService($q, $log, $http, $window) {
     .then( response => {
       service.currentEmployee = response.data;
       $log.log('success:', response.data);
-      return setToken(response.data.token);
+      return authService.setToken(response.data);
     })
     .catch( err => {
       $log.error('ERROR:', err.message);
@@ -82,7 +59,7 @@ function employeeService($q, $log, $http, $window) {
   service.addEmployeeAsAdmin = function(storeID, employee) {
     $log.debug('employeeService.addEmployeeAsAdmin()');
 
-    return getToken()
+    return authService.getToken()
     .then( token => {
       let url = `${__API_URL__}/api/store/${storeID}/employee`;
       let config = {
@@ -111,7 +88,7 @@ function employeeService($q, $log, $http, $window) {
   service.fetchEmployees = function(storeID) {
     $log.debug('employeeService.fetchEmployees()');
 
-    return getToken()
+    return authService.getToken()
     .then( token => {
       let url = `${__API_URL__}/api/store/${storeID}/employee`;
       let config = {
@@ -137,7 +114,7 @@ function employeeService($q, $log, $http, $window) {
   service.updateEmployee = function(storeID, employeeID, employeeData) {
     $log.debug('employeeService.updateEmployee()');
 
-    return getToken()
+    return authService.getToken()
     .then( token => {
       let url = `${__API_URL__}/api/store/${storeID}/employee/${employeeID}`;
       let config = {
@@ -171,7 +148,7 @@ function employeeService($q, $log, $http, $window) {
   service.removeEmployee = function(storeID, employeeID) {
     $log.debug('employeeService.removeEmployee()');
 
-    return getToken()
+    return authService.getToken()
     .then( token => {
       let url = `${__API_URL__}/api/store/${storeID}/employee/${employeeID}`;
       let config = {
