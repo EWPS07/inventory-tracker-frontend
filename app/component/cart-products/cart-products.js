@@ -49,9 +49,9 @@ function CartProductController($log, cartProductService, storeService, cartOrder
       productData.quantity = productData.buyQuantity;
       let buyProduct;
       if (this.cartOrder.products.find(_product => _product.desc === productData.desc)) {
-        buyProduct = cartProductService.updateCartProduct(productData._id, storeService.currentStore._id, productData);
+        buyProduct = cartProductService.updateCartProduct(productData._id, storeService.currentStore._id, productData, this.cartOrder);
       } else {
-        buyProduct = cartProductService.createCartProduct(this.cartOrder._id, storeService.currentStore._id, productData);
+        buyProduct = cartProductService.createCartProduct(this.cartOrder._id, storeService.currentStore._id, productData, this.cartOrder);
       }
       buyProduct.then(() => inventoryProductService.getProduct(productData._id))
       .then(_product => {
@@ -61,6 +61,7 @@ function CartProductController($log, cartProductService, storeService, cartOrder
             break;
           }
         }
+        console.log(customerService.currentCustomer);
       });
     });
   };
