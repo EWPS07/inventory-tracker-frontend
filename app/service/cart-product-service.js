@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['$q', '$log', '$http', cartProductService];
+module.exports = ['$q', '$log', '$http', 'customerService', cartProductService];
 
-function cartProductService($q, $log, $http) {
+function cartProductService($q, $log, $http, customerService) {
   $log.debug('cartProductService()');
 
   let service = {};
@@ -19,14 +19,26 @@ function cartProductService($q, $log, $http) {
     $log.debug('cartProductService.createCartProduct()');
 
     return $http.post(`${url}/orders/${cartOrderID}/${storeID}/cart`, productData, config)
-    .then(response => $q.resolve(response.data))
+    .then(response => {
+      customerService.currentCustomer.currentOrders[0].products.push(response.data);
+      return $q.resolve(response.data);
+    })
     .catch( err => $log.error(err.message));
   };
 
-  service.updateCartProduct = function(productID, productData) {
+  service.updateCartProduct = function(productID, storeID, productData) {
     $log.debug('cartProductService.updateCartProduct');
 
-    return $http.put(`${url}/products/${productID}`, productData, config)
+    return $http.put(`${url}/store/${storeID}/products/${productID}`, productData, config)
+    .then(response => {
+      for (var i = 0; i < customerService.currentCustomer.currentOrders[0].products.length; i++) {
+        if (customerService.currentCustomer.currentOrders[0].products[i]._id === response.data._id) {
+          customerService.currentCustomer.currentOrders[0].products[i] = response.data;
+          break;
+        }
+      }
+      return $q.resolve(response.data);
+    })
     .catch(err => $log.error(err.message));
   };
 
@@ -43,4 +55,6 @@ function cartProductService($q, $log, $http) {
     })
     .catch(err => $log.error(err.message));
   };
+
+  return service;
 }
