@@ -13,10 +13,10 @@ function CartProductController($log, cartProductService, storeService, cartOrder
   .then(() => {
     if (storeService.stores) storeService.currentStore = storeService.stores[0];
 
-    if (customerService.currentCustomer.favoriteStore) {
-      storeService.currentStore = storeService.stores.find(_store => _store.storeNumber === customerService.currentCustomer.favoriteStore);
-    }
-    this.currentProducts = storeService.currentStore.current;
+    // if (customerService.currentCustomer.favoriteStore) {
+    //   storeService.currentStore = storeService.stores.find(_store => _store.storeNumber === customerService.currentCustomer.favoriteStore);
+    // }
+    this._storeService = storeService;
   });
 
   this.createOrUpdateOrder = function() {
@@ -55,9 +55,9 @@ function CartProductController($log, cartProductService, storeService, cartOrder
       }
       buyProduct.then(() => inventoryProductService.getProduct(productData._id))
       .then(_product => {
-        for (var i = 0; i < this.currentProducts.length; i++) {
-          if (this.currentProducts[i]._id === productData._id) {
-            this.currentProducts[i] = _product;
+        for (var i = 0; i < this._storeService.currentStore.current.length; i++) {
+          if (this._storeService.currentStore.current[i]._id === productData._id) {
+            this._storeService.currentStore.current[i] = _product;
             break;
           }
         }

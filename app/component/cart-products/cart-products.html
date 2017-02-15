@@ -1,7 +1,7 @@
 <section class="cart-products">
   <input ng-model="cartProductCtrl.searchTerm" type="text" placeholder="Search for a product">
   <ul>
-    <li ng-repeat="(index, product) in cartProductCtrl.currentProducts | categorySearch: cartProductCtrl.searchTerm track by $index">
+    <li ng-repeat="(index, product) in cartProductCtrl._storeService.currentStore.current | categorySearch: cartProductCtrl.searchTerm track by $index">
       <div>
         <p>Name:
           <span>
@@ -20,7 +20,7 @@
           </span>
         </p>
         <span>Quantity:</span>
-        <input type="number" ng-model="cartProductCtrl.currentProducts[index].buyQuantity">
+        <input type="number" ng-model="cartProductCtrl._storeService.currentStore.current[index].buyQuantity">
         <button ng-click="cartProductCtrl.addToCart(product)">Add to cart</button>
       </div>
     </li>

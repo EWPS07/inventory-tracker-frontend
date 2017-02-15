@@ -30,13 +30,13 @@ function routerConfig($stateProvider, $urlRouterProvider) {
       controller: 'EmployeeDashboardController',
       controllerAs: 'EmployeeDashboardCtrl'
     },
-    {
-      name: 'customer-dashboard',
-      url: '/customer-dashboard',
-      template: require('../view/customer-dashboard/customer-dashboard.html'),
-      controller: 'CustomerDashboardController',
-      controllerAs: 'CustomerDashboardCtrl'
-    }
+    // {
+    //   name: 'customer-dashboard',
+    //   url: '/customer-dashboard',
+    //   template: require('../view/customer-dashboard/customer-dashboard.html'),
+    //   controller: 'CustomerDashboardController',
+    //   controllerAs: 'CustomerDashboardCtrl'
+    // }
   ];
 
   states.forEach( state => {
