@@ -7,11 +7,11 @@
   <div class="customer-previous-order-container">
     <ul>
       <!-- TODO: Displays all of the user's previous orders. -->
-      <display-previous-orders>
+      <previous-orders>
       ng-repeat="orders"
       delete-done="customerDashboardCtlr.orderDeleteDone(currentOrder)"
       ng-click="CustomerDashboardCtlr.currentCustomer.currentOrder = orders"
-      </display-previous-orders>
+      </previous-orders>
     </ul>
   </div>
 </section>

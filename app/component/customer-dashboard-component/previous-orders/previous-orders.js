@@ -1,9 +1,9 @@
 'use strict';
 
-require('./_recent-orders.scss');
+require('./_previous-orders.scss');
 
 module.exports = {
-  template: require('./recent-orders.html'),
+  template: require('./previous-orders.html'),
   controller: ['$q','$log', 'customerService', CustomerPreviousOrdersController],
   controllerAs: 'customerPreviousOrdersCtrl',
   bindings: {

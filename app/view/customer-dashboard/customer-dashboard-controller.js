@@ -1,6 +1,6 @@
 'use strict';
 
-require('./_customer-dashboard-view.scss');
+require('./_customer-dashboard.scss');
 
 module.exports = ['$log', '$rootScope', 'customerService', CustomerDashboardController];
 
