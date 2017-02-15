@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['$q', '$log', '$http', 'authService', employeeService];
+module.exports = ['$q', '$log', '$http', '$window', 'authService', employeeService];
 
-function employeeService($q, $log, $http, authService) {
+function employeeService($q, $log, $http, $window, authService) {
   $log.debug('employeeService');
 
   let service = {};
@@ -32,9 +32,28 @@ function employeeService($q, $log, $http, authService) {
     });
   };
 
-  service.employeeLogin = function(employee) {
-    $log.debug('employeeService.employeeLogin()');
-  }
+  service.loginEmployee = function(employee) {
+    $log.debug('employeeService.loginEmployee()');
+
+    let url = `${__API_URL__}/api/employee/signin`;
+    let base64 = $window.btoa(`${user.username}:${user.password}`);
+    let config = {
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Basic ${base64}`
+      }
+    };
+
+    return $http.get(url, config)
+    .then( response => {
+      $log.log('success:', response.data);
+      return setToken(response.data);
+    })
+    .catch( err => {
+      $log.error('ERROR:', err.message);
+      return $q.reject(err);
+    });
+  };
 
   service.addEmployeeAsAdmin = function(storeID, employee) {
     $log.debug('employeeService.addEmployeeAsAdmin()');
