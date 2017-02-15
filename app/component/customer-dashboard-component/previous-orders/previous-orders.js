@@ -7,18 +7,16 @@ module.exports = {
   controller: ['$q','$log', 'customerService', CustomerPreviousOrdersController],
   controllerAs: 'customerPreviousOrdersCtrl',
   bindings: {
-    customer: '<'
+    arrayOfOrders: '<'
   }
 };
 
 function CustomerPreviousOrdersController($q, $log) {
   $log.debug('PreviousOrdersController');
 
-  this.listOfOrders = this.customerService.currentCustomer.currentOrder.reverse();
+  this.noOrders = false;
 
-  if(this.listOfOrders.length === 0) {
-    return $q.reject(new Error('No Orders Found.'));
-  } else {
-    return $q.resolve(this.listOfOrders);
+  if(this.arrayOfOrders.length === 0) {
+    this.noOrders = true;
   }
 }

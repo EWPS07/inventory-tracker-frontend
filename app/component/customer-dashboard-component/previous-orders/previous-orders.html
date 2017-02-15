@@ -1,45 +1,36 @@
-<li class="previous-orders"
-  ng-repeat="customerService.currentCustomer.currentOrder">
+<section class="previous-orders">
+
+  <h3>Previous Orders</h3>
 
   <div>
     <span class="orders-data-title">ORDERS #</span>
-    <span class="orders-data">{{ }} </span>
   </div>
 
   <div>
     <span class="orders-data-title">DATE</span>
-    <span class="orders-data">{{  }} </span>
   </div>
 
   <div>
     <span class="orders-data-title">SHIP TO</span>
-    <span class="orders-data">{{  }} </span>
   </div>
 
   <div>
     <span class="orders-data-title">ORDER TOTAL</span>
-    <span class="orders-data">{{  }} </span>
   </div>
 
   <div>
     <span class="orders-data-title">STATUS</span>
-    <span class="orders-data">{{  }} </span>
   </div>
 
-  <h3>Previous Orders</h3>
-
-  <!-- TODO: have the recent orders display here. -->
-
-  <button
-    class="btn-small"
-    ng-click="customerPreviousOrdersCtrl.deleteCustomerPreviousOrders()"
-    ng-show="!customerPreviousOrdersCtrl.showEditCustomerPreviousOrders">delete</button>
-
-  <button
-    class="btn-small"
-    ng-click="customerPreviousOrdersCtrl.showEditCustomerPreviousOrders = !customerPreviousOrdersCtrl.showEditCustomerPreviousOrders"
-    ng-show="!customerPreviousOrdersCtrl.showEditCustomerPreviousOrders">edit</button>
-
-  <div class="clearfix"></div>
-
-</li>
+  <ul>
+    <li
+      ng-repeat="order in PreviousOrdersCtrl.arrayOfOrders">
+      <span class="order-data">{{ order._id }}</span>
+      <span class="order-data">{{ order.date }}</span>
+      <span class="order-data">{{ order.shippingName }}</span>
+      <span class="order-data">TOTAL</span>
+      <span class="order-data">{{ order.completed }}</span>
+      <span class="order-data"><a href="#">View Order</a></span>
+    </li>
+  </ul>
+</section>
