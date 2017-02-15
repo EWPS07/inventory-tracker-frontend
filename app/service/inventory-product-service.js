@@ -5,6 +5,12 @@ module.exports = ['$q', '$log', '$http', 'storeService', inventoryProductService
 function inventoryProductService($q, $log, $http, storeService) {
 
   let service = {};
+  let config = {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    }
+  };
   service.currentInventory = storeService.currentStore.current;
 
   // ADD NEW PRODUCT TO CURRENT INVENTORY --------------------------------------
@@ -57,6 +63,21 @@ function inventoryProductService($q, $log, $http, storeService) {
     .then( res =>
       service.currentInventory.push(res.data)
     )
+    .catch(err => $log.error(err.message));
+  };
+
+  service.getProduct = function(productID) {
+    $log.debug('inventoryProductService.getProduct');
+
+    let config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      }
+    };
+
+    return $http.get(`${__API_URL__}/api/inventory/${productID}`, config)
+    .then(response => $q.resolve(response.data))
     .catch(err => $log.error(err.message));
   };
 

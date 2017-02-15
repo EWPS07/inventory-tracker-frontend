@@ -10,18 +10,32 @@ function routerConfig($stateProvider, $urlRouterProvider) {
 
   let states = [
     {
-      name: 'home',
-      url: '/home',
-      template: require('../view/home/home.html'),
-      controller: 'HomeController',
-      controllerAs: 'homeCtrl'
+      name: 'shopping',
+      url: '/shopping',
+      template: require('../view/shopping/shopping.html'),
+      controller: 'ShoppingController',
+      controllerAs: 'shoppingCtrl'
     },
     {
-      name: 'landing',
-      url: '/join',
-      template: require('../view/landing/landing.html'),
-      controller: 'LandingController',
-      controllerAs: 'landingCtrl'
+      name: 'settings',
+      url: '/settings',
+      template: require('../view/settings/settings.html'),
+      controller: 'SettingsController',
+      controllerAs: 'settingsCtrl'
+    },
+    {
+      name: 'employee-dashboard',
+      url: '/employee-dashboard',
+      template: require('../view/employee-dashboard/employee-dashboard.html'),
+      controller: 'EmployeeDashboardController',
+      controllerAs: 'EmployeeDashboardCtrl'
+    },
+    {
+      name: 'customer-dashboard',
+      url: '/customer-dashboard',
+      template: require('../view/customer-dashboard/customer-dashboard.html'),
+      controller: 'CustomerDashboardController',
+      controllerAs: 'CustomerDashboardCtrl'
     }
   ];
 

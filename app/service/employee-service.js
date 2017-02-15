@@ -1,13 +1,14 @@
 'use strict';
 
-module.exports = ['$q', '$log', '$http', 'authService', employeeService];
+module.exports = ['$q', '$log', '$http', '$window', 'authService', employeeService];
 
-function employeeService($q, $log, $http, authService) {
+function employeeService($q, $log, $http, $window, authService) {
   $log.debug('employeeService');
 
   let service = {};
   let token = null;
   service.employees = [];
+  service.currentEmployee = {};
 
   service.registerEmployee = function(storeID, employee) {
     $log.debug('employeeService.registerEmployee()');
@@ -23,7 +24,31 @@ function employeeService($q, $log, $http, authService) {
     return $http.post(url, employee, config)
     .then( response => {
       $log.log('success:', response.data);
-      return authservice.setToken(response.data);
+      return authService.setToken(response.data);
+    })
+    .catch( err => {
+      $log.error('ERROR:', err.message);
+      return $q.reject(err);
+    });
+  };
+
+  service.loginEmployee = function(employee) {
+    $log.debug('employeeService.loginEmployee()');
+
+    let url = `${__API_URL__}/api/employee/signin`;
+    let base64 = $window.btoa(`${employee.username}:${employee.password}`);
+    let config = {
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Basic ${base64}`
+      }
+    };
+
+    return $http.get(url, config)
+    .then( response => {
+      service.currentEmployee = response.data;
+      $log.log('success:', response.data);
+      return authService.setToken(response.data);
     })
     .catch( err => {
       $log.error('ERROR:', err.message);
@@ -110,7 +135,7 @@ function employeeService($q, $log, $http, authService) {
           service.employees[i] = response.data;
           break;
         }
-      };
+      }
 
       return response.data;
     })
@@ -155,8 +180,9 @@ function employeeService($q, $log, $http, authService) {
 
     $window.localStorage.removeItem('token');
     token = null;
+    service.currentEmployee = {};
     return $q.resolve();
   };
 
   return service;
-};
+}
