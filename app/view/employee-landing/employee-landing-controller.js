@@ -1,10 +1,10 @@
 'use strict';
 
-require('./_landing.scss');
+require('./_employee-landing.scss');
 
-module.exports = ['$log', '$location', 'employeeService', LandingController];
+module.exports = ['$log', '$location', 'employeeService', EmployeeLandingController];
 
-function LandingController($log, $location, employeeService) {
+function EmployeeLandingController($log, $location, employeeService) {
   $log.debug('LandingController');
 
   let url = $location.url();
