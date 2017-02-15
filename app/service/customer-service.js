@@ -32,7 +32,6 @@ function customerService($location, $q, $log, $http, $window) {
     });
   };
 
-
   service.login = function(user){
     $log.debug('customerService.signin()');
 

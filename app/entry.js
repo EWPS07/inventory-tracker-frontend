@@ -47,9 +47,9 @@ context.keys().forEach( key => {
   inventory_tracker.filter(name, module);
 });
 
-context = require.context('./directive/', true, /\.js$/);
-context.keys().forEach( key => {
-  let name = camelcase(path.basename(key, '.js'));
-  let module = context(key);
-  inventory_tracker.directive(name, module);
-});
+// context = require.context('./directive/', true, /\.js$/);
+// context.keys().forEach( key => {
+//   let name = camelcase(path.basename(key, '.js'));
+//   let module = context(key);
+//   inventory_tracker.directive(name, module);
+// });

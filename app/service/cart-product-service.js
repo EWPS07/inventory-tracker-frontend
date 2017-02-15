@@ -15,26 +15,35 @@ function cartProductService($q, $log, $http, customerService) {
     }
   };
 
-  service.createCartProduct = function(cartOrderID, storeID, productData) {
+  service.createCartProduct = function(cartOrderID, storeID, productData, cartOrder) {
     $log.debug('cartProductService.createCartProduct()');
 
     return $http.post(`${url}/orders/${cartOrderID}/${storeID}/cart`, productData, config)
     .then(response => {
-      customerService.currentCustomer.currentOrders[0].products.push(response.data);
+      for (var i = 0; i < customerService.currentCustomer.currentOrders.length; i++) {
+        if (customerService.currentCustomer.currentOrders[i]._id === cartOrder._id) {
+          customerService.currentCustomer.currentOrders[i].products.push(response.data);
+          break;
+        }
+      }
       return $q.resolve(response.data);
     })
     .catch( err => $log.error(err.message));
   };
 
-  service.updateCartProduct = function(productID, storeID, productData) {
+  service.updateCartProduct = function(productID, storeID, productData, cartOrder) {
     $log.debug('cartProductService.updateCartProduct');
 
     return $http.put(`${url}/store/${storeID}/products/${productID}`, productData, config)
     .then(response => {
-      for (var i = 0; i < customerService.currentCustomer.currentOrders[0].products.length; i++) {
-        if (customerService.currentCustomer.currentOrders[0].products[i]._id === response.data._id) {
-          customerService.currentCustomer.currentOrders[0].products[i] = response.data;
-          break;
+      for (var i = 0; i < customerService.currentCustomer.currentOrders.length; i++) {
+        if (customerService.currentCustomer.currentOrders[i]._id === cartOrder._id) {
+          for (var j = 0; j < customerService.currentCustomer.currentOrders[i].products.length; j++) {
+            if (customerService.currentCustomer.currentOrders[i].products[j]._id === response.data._id) {
+              customerService.currentCustomer.currentOrders[i].products[j] = response.data;
+              break;
+            }
+          }
         }
       }
       return $q.resolve(response.data);

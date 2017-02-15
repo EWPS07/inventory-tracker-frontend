@@ -16,31 +16,27 @@ function CartProductController($log, cartProductService, storeService, cartOrder
     if (customerService.currentCustomer.favoriteStore) {
       storeService.currentStore = storeService.stores.find(_store => _store.storeNumber === customerService.currentCustomer.favoriteStore);
     }
-    this.currentProducts = storeService.currentStore.current;
+    this._storeService = storeService;
   });
 
   this.createOrUpdateOrder = function() {
     return new Promise((resolve) => {
-      if (customerService.currentCustomer.currentOrders.length > 0) {
-        if (customerService.currentCustomer.currentOrders[customerService.currentCustomer.currentOrders.length - 1].completed) {
-          cartOrderService.createOrder(storeService.currentStore._id, customerService.currentCustomer._id)
-          .then(_order => {
-            customerService.currentCustomer.currentOrders.push(_order);
-            this.cartOrder = _order;
-            return resolve();
-          });
-        } else {
-          this.cartOrder = customerService.currentCustomer.currentOrders[customerService.currentCustomer.currentOrders.length - 1];
-          return resolve();
-        }
-      } else {
-        cartOrderService.createOrder(storeService.currentStore._id, customerService.currentCustomer._id)
-        .then(_order => {
-          customerService.currentCustomer.currentOrders.push(_order);
-          this.cartOrder = _order;
-          return resolve();
-        });
+      let customerCurrentOrders = customerService.currentCustomer.currentOrders;
+      //Check if the customer has a cart order associated with this store
+      let currentStoreOrder = customerCurrentOrders.find(_order => _order.storeID === storeService.currentStore._id);
+
+      //If they do, and it's not completed, then add to the active order for that store
+      if (currentStoreOrder && !currentStoreOrder.completed) {
+        this.cartOrder = currentStoreOrder;
+        return resolve();
       }
+      //If they don't have a cart order for that store, or they do, but it's completed, make a new order
+      cartOrderService.createOrder(storeService.currentStore._id, customerService.currentCustomer._id)
+      .then(_order => {
+        customerCurrentOrders.push(_order);
+        this.cartOrder = _order;
+        return resolve();
+      });
     });
   };
 
@@ -53,18 +49,19 @@ function CartProductController($log, cartProductService, storeService, cartOrder
       productData.quantity = productData.buyQuantity;
       let buyProduct;
       if (this.cartOrder.products.find(_product => _product.desc === productData.desc)) {
-        buyProduct = cartProductService.updateCartProduct(productData._id, storeService.currentStore._id, productData);
+        buyProduct = cartProductService.updateCartProduct(productData._id, storeService.currentStore._id, productData, this.cartOrder);
       } else {
-        buyProduct = cartProductService.createCartProduct(this.cartOrder._id, storeService.currentStore._id, productData);
+        buyProduct = cartProductService.createCartProduct(this.cartOrder._id, storeService.currentStore._id, productData, this.cartOrder);
       }
       buyProduct.then(() => inventoryProductService.getProduct(productData._id))
       .then(_product => {
-        for (var i = 0; i < this.currentProducts.length; i++) {
-          if (this.currentProducts[i]._id === productData._id) {
-            this.currentProducts[i] = _product;
+        for (var i = 0; i < this._storeService.currentStore.current.length; i++) {
+          if (this._storeService.currentStore.current[i]._id === productData._id) {
+            this._storeService.currentStore.current[i] = _product;
             break;
           }
         }
+        console.log(customerService.currentCustomer);
       });
     });
   };

@@ -2,7 +2,7 @@
 
 module.exports = {
   template: require('./store-location.html'),
-  controller: ['$log', 'storeService', 'customerService', StoreLocationController],
+  controller: ['$log', 'storeService', '$rootScope', 'customerService', StoreLocationController],
   controllerAs: 'storeLocationCtrl'
 };
 
