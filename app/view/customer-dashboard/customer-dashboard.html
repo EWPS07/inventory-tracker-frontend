@@ -1,4 +1,17 @@
-<section class="customer">
-  <create-order></creat-order>
+<section class="customer-dashboard">
+  <h2>customer dashboard</h2>
 
-    <input
+  <!-- TODO: Build customer profile. -->
+  <customer-profile></customer-profile>
+
+  <div class="customer-previous-order-container">
+    <ul>
+      <!-- TODO: Displays all of the user's previous orders. -->
+      <display-previous-orders>
+      ng-repeat="orders"
+      delete-done="customerDashboardCtlr.orderDeleteDone(currentOrder)"
+      ng-click="CustomerDashboardCtlr.currentCustomer.currentOrder = orders"
+      </display-previous-orders>
+    </ul>
+  </div>
+</section>
