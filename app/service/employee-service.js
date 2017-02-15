@@ -46,6 +46,7 @@ function employeeService($q, $log, $http, $window, authService) {
 
     return $http.get(url, config)
     .then( response => {
+      service.currentEmployee = response.data;
       $log.log('success:', response.data);
       return setToken(response.data);
     })
@@ -179,6 +180,7 @@ function employeeService($q, $log, $http, $window, authService) {
 
     $window.localStorage.removeItem('token');
     token = null;
+    service.currentEmployee = {};
     return $q.resolve();
   };
 
