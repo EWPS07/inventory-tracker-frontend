@@ -36,7 +36,7 @@ function employeeService($q, $log, $http, $window, authService) {
     $log.debug('employeeService.loginEmployee()');
 
     let url = `${__API_URL__}/api/employee/signin`;
-    let base64 = $window.btoa(`${user.username}:${user.password}`);
+    let base64 = $window.btoa(`${employee.username}:${employee.password}`);
     let config = {
       headers: {
         Accept: 'application/json',
