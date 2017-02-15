@@ -12,11 +12,11 @@ function inventoryOrderService($log, $http, $q, storeService) {
       Accept: 'application/json',
       'Content-Type': 'application/json'
     }
-  }
+  };
 
   // POST INVENTORY ORDER TO STORE ---------------------------------------------
   service.addInventoryOrder = function(storeID) {
-    $log.debug('inventoryOrderService')
+    $log.debug('inventoryOrderService');
     let url = `${__API_URL__}/api/store/${storeID}/inventory-order`;
     return $http.post(url, config)
     .then(res => {
@@ -34,7 +34,7 @@ function inventoryOrderService($log, $http, $q, storeService) {
       }
     }
     return arr;
-  }
+  };
 
   // DELETE INVENTORY ORDER ----------------------------------------------------
   service.deleteInventoryOrder = function(inventoryOrderID) {
@@ -48,6 +48,6 @@ function inventoryOrderService($log, $http, $q, storeService) {
     )
     .catch(err => $log.error(err.message));
   };
-  
+
   return service;
-};
+}
