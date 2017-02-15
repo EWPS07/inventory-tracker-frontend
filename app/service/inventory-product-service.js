@@ -18,6 +18,12 @@ function inventoryProductService($q, $log, $http, storeService) {
     $log.debug('inventoryProductService.addNewProduct()');
 
     let url = `${__API_URL__}/api/store/${storeID}/inventory`;
+    let config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      }
+    };
 
     return $http.post(url, product, config)
     .then( res => service.currentInventory.push(res.data))
@@ -29,6 +35,12 @@ function inventoryProductService($q, $log, $http, storeService) {
     $log.debug('inventoryProductService.addProductToInventoryOrder()');
 
     let url = `${__API_URL__}/api/inventory-orders/${inventoryOrderID}/inventory`;
+    let config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      }
+    };
 
     return $http.post(url, product, config)
     .then(res => res.data)
@@ -40,6 +52,12 @@ function inventoryProductService($q, $log, $http, storeService) {
     $log.debug('inventoryProductService.addInventoryOrderToCurrentInventory()');
 
     let url = `${__API_URL__}/api/inventory-orders/${inventoryOrderID}/complete-order`;
+    let config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      }
+    };
 
     return $http.post(url, config)
     .then( res =>
@@ -53,6 +71,12 @@ function inventoryProductService($q, $log, $http, storeService) {
     $log.debug('inventoryProductService.updateProduct()');
 
     let url = `${__API_URL__}/api/inventory/${inventoryID}`;
+    let config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      }
+    };
 
     return $http.put(url, product, config)
     .catch(err => $log.error(err.message));
@@ -74,6 +98,12 @@ function inventoryProductService($q, $log, $http, storeService) {
     $log.debug('inventoryProductService.deleteProduct()');
 
     let url = `${__API_URL__}/api/inventory/${inventoryID}`;
+    let config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      }
+    };
 
     return $http.delete(url, config)
     .then(
