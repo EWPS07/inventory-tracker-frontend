@@ -24,8 +24,15 @@ function routerConfig($stateProvider, $urlRouterProvider) {
       controllerAs: 'settingsCtrl'
     },
     {
+      name: 'employee-landing',
+      url: '/join',
+      template: require('../view/employee-landing/employee-landing.html'),
+      controller: 'EmployeeLandingController',
+      controllerAs: 'employeelandingCtrl'
+    },
+    {
       name: 'employee-dashboard',
-      url: '/employee-dashboard',
+      url: '/employee',
       template: require('../view/employee-dashboard/employee-dashboard.html'),
       controller: 'EmployeeDashboardController',
       controllerAs: 'EmployeeDashboardCtrl'
