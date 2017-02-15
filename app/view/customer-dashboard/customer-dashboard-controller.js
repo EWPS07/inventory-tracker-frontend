@@ -12,16 +12,10 @@ module.exports = ['$log', '$rootScope', 'customerService', CustomerDashboardCont
 function CustomerDashboardController($log, $rootScope, customerService){
   $log.debug('CustomerDashboardController');
 
-  this.fetchAllOrders = function() {
-    customerService.currentCustomer.currentOrders.reverse();
-  };
-
   this.orderDeleteDone = function(order) {
     if (this.currentCustomer.currentOrders._id === order._id) {
       this.currentCustomer.currentOrders = null;
     }
   };
-
-  this.allOrders = this.fetchAllOrders();
 
 }

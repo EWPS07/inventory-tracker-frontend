@@ -24,9 +24,9 @@
 
   <ul>
     <li
-      ng-repeat="order in PreviousOrdersCtrl.arrayOfOrders">
+      ng-repeat="order in customerPreviousOrdersCtrl.arrayOfOrders">
       <span class="order-data">{{ order._id }}</span>
-      <span class="order-data">{{ order.date }}</span>
+      <span class="order-data">{{ order.date | date:"MM/dd/yyyy" }}</span>
       <span class="order-data">{{ order.shippingName }}</span>
       <span class="order-data">TOTAL</span>
       <span class="order-data">{{ order.completed }}</span>
