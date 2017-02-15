@@ -37,4 +37,6 @@ function cartOrderService($log, $http, $q) {
     return $http.delete(`${url}/${orderID}`, config)
     .catch(err => $log.error(err.message));
   };
+
+  return service;
 }
