@@ -22,6 +22,20 @@ function routerConfig($stateProvider, $urlRouterProvider) {
       template: require('../view/settings/settings.html'),
       controller: 'SettingsController',
       controllerAs: 'settingsCtrl'
+    },
+    {
+      name: 'employee-dashboard',
+      url: '/employee-dashboard',
+      template: require('../view/employee-dashboard/employee-dashboard.html'),
+      controller: 'EmployeeDashboardController',
+      controllerAs: 'EmployeeDashboardCtrl'
+    },
+    {
+      name: 'customer-dashboard',
+      url: '/customer-dashboard',
+      template: require('../view/customer-dashboard/customer-dashboard.html'),
+      controller: 'CustomerDashboardController',
+      controllerAs: 'CustomerDashboardCtrl'
     }
   ];
 
