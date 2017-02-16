@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['$q', '$log', '$http', 'storeService', inventoryProductService];
+module.exports = ['$q', '$log', '$http', 'storeService', 'inventoryOrderService', inventoryProductService];
 
-function inventoryProductService($q, $log, $http, storeService) {
+function inventoryProductService($q, $log, $http, inventoryOrderService, storeService) {
 
   let service = {};
   let config = {
@@ -11,7 +11,6 @@ function inventoryProductService($q, $log, $http, storeService) {
       'Content-Type': 'application/json'
     }
   };
-  service.currentInventory = storeService.currentStore.current;
 
   // ADD NEW PRODUCT TO CURRENT INVENTORY --------------------------------------
   service.addNewProduct = function(product, storeID) {
@@ -38,6 +37,7 @@ function inventoryProductService($q, $log, $http, storeService) {
   service.addProductToInventoryOrder = function(product, inventoryOrderID) {
     $log.debug('inventoryProductService.addProductToInventoryOrder()');
 
+          $log.log(inventoryOrderService.currentOrder);
     let url = `${__API_URL__}/api/inventory-orders/${inventoryOrderID}/inventory`;
     let config = {
       headers: {
@@ -46,8 +46,18 @@ function inventoryProductService($q, $log, $http, storeService) {
       }
     };
 
-    return $http.post(url, product, config)
-    .then(res => res.data)
+    let sentProduct = {
+      name: product.name,
+      desc: product.desc,
+      category: product.category,
+      quantity: product.quantity,
+      price: product.price
+    };
+
+    return $http.post(url, sentProduct, config)
+    .then(res => {
+      inventoryOrderService.currentOrder.inventories.push(res.data);
+    })
     .catch( err => $log.error(err.message));
   };
 
@@ -98,6 +108,14 @@ function inventoryProductService($q, $log, $http, storeService) {
     };
 
     return $http.put(url, product, config)
+    .then(res => {
+      for(var i = 0; i < inventoryOrderService.currentOrder.inventories.length; i++) {
+        if (inventoryOrderService.currentOrder.inventories[i]._id === product._id) {
+          inventoryOrderService.currentOrder.inventories[i] = res.data;
+          break;
+        }
+      }
+    })
     .catch(err => $log.error(err.message));
   };
 

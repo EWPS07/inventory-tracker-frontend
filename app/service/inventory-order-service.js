@@ -7,6 +7,7 @@ function inventoryOrderService($log, $http, $q, storeService) {
 
   let service = {};
   service.incoming = storeService.currentStore.incoming;
+  service.currentOrder = [];
   let config = {
     headers: {
       Accept: 'application/json',
@@ -20,8 +21,19 @@ function inventoryOrderService($log, $http, $q, storeService) {
     let url = `${__API_URL__}/api/store/${storeID}/inventory-order`;
     return $http.post(url, config)
     .then(res => {
-      service.incoming.push(res.data);
+      storeService.currentStore.incoming.push(res.data);
+      service.currentOrder = res.data;
+      return $q.resolve(res.data);
     })
+    .catch(err => $log.error(err.message));
+  };
+
+  service.getOrder = function(orderID) {
+    $log.log('InventoryOrderService.getOrder()');
+
+    let url = `${__API_URL__}/api/inventories/${orderID}`;
+    return $http.get(url, config)
+    .then(res => $q.resolve(res.data))
     .catch(err => $log.error(err.message));
   };
 
