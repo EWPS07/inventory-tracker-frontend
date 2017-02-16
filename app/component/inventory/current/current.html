@@ -12,15 +12,15 @@
     <li
     ng-repeat="(index, product) in currentCtrl.storeService.currentStore.current track by $index">
     <span>{{ product._id }}</span>
-    <span>{{ product.name }}</span>
+    <span ng-show="!product.editMe">{{ product.name }}</span>
     <input type="text" ng-if="product.editMe" ng-model="currentCtrl.storeService.currentStore.current[index].newName">
-    <span>{{ product.desc }}</span>
+    <span ng-show="!product.editMe">{{ product.desc }}</span>
     <input type="text" ng-if="product.editMe" ng-model="currentCtrl.storeService.currentStore.current[index].newDesc">
-    <span>{{ product.quantity }}</span>
+    <span ng-show="!product.editMe">{{ product.quantity }}</span>
     <input type="number" ng-if="product.editMe" ng-model="currentCtrl.storeService.currentStore.current[index].newQuantity">
-    <span>{{ product.price }}</span>
+    <span ng-show="!product.editMe">{{ product.price }}</span>
     <input type="number" ng-if="product.editMe" ng-model="currentCtrl.storeService.currentStore.current[index].newPrice">
-    <span>{{ product.category }}</span>
+    <span ng-show="!product.editMe">{{ product.category }}</span>
     <input type="text" ng-if="product.editMe" ng-model="currentCtrl.storeService.currentStore.current[index].newCategory">
     <span
     ng-show="!product.editMe" ng-click="product.editMe = true; product.newQuantity = product.quantity;
