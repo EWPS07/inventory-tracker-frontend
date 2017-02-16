@@ -1,0 +1,21 @@
+<section class="outgoing-orders">
+  <ul>
+    <li>ID #</li>
+    <li>NAME</li>
+    <li>DESCRIPTION</li>
+    <li>QUANTITY</li>
+    <li>PRICE</li>
+    <li>CATEGORY</li>
+  </ul>
+
+  <ul>
+    <li
+    ng-repeat="(index, product) in outgoingCtrl.storeService.currentStore.outgoing track by $index">
+    <span>{{ product._id }}</span>
+    <span>{{ product.name }}</span>
+    <span>{{ product.desc }}</span>
+    <span>{{ product.quantity }}</span>
+    <span>{{ product.price }}</span>
+    <span>{{ product.category }}</span>
+  </ul>
+</section>
