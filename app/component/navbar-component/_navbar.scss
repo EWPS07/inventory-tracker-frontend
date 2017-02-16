@@ -2,4 +2,9 @@
 
 .main-nav {
     // TODO: BUILD OUT NAVBAR STYLES
+    background: $brand-primary;
+    img {
+      width: 20vw;
+      margin: 1%;
+    }
 }
