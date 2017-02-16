@@ -2,12 +2,18 @@
 
 module.exports = {
   template: require('./outgoing-product.html'),
-  controller: ['$log', 'customerService', OutgoingProductController],
+  controller: ['$log', 'customerService', 'cartProductService', OutgoingProductController],
   controllerAs: 'outgoingProductCtrl'
 };
 
-function OutgoingProductController($log, customerService) {
+function OutgoingProductController($log, customerService, cartProductService) {
   $log.log('Outgoing product controller');
 
   this.customerService = customerService;
+
+  this.editQuantity = function(product) {
+    if (product.quantity === product.newQuantity) return; //Call delete item;
+    product.quantity = product.newQuantity - product.quantity;
+    cartProductService.updateCartProduct(product._id, customerService.currentOrder.storeID, product, customerService.currentOrder);
+  };
 }

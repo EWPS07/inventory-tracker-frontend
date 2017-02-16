@@ -26,6 +26,7 @@ function cartProductService($q, $log, $http, customerService) {
           break;
         }
       }
+      response.data.editMe = false;
       return $q.resolve(response.data);
     })
     .catch( err => $log.error(err.message));
@@ -46,6 +47,7 @@ function cartProductService($q, $log, $http, customerService) {
           }
         }
       }
+      response.data.editMe = false;
       return $q.resolve(response.data);
     })
     .catch(err => $log.error(err.message));
