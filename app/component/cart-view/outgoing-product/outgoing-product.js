@@ -20,4 +20,14 @@ function OutgoingProductController($log, customerService, cartProductService) {
       customerService.currentOrder.products.forEach(product => customerService.currentTotal += (product.quantity * product.price));
     });
   };
+
+  this.deleteItem = function(product) {
+    product.quantity = -Math.abs(product.quantity);
+    cartProductService.updateCartProduct(product._id, customerService.currentOrder.storeID, product, customerService.currentOrder)
+    .then(() => {
+      customerService.currentTotal = 0;
+      customerService.currentOrder.products.forEach(product => customerService.currentTotal += (product.quantity * product.price));
+      cartProductService.deleteCartProduct(customerService.currentOrder.products, product._id);
+    });
+  };
 }
