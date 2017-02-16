@@ -23,17 +23,17 @@ function SettingsController($log, storeService, employeeService, customerService
   //   address: '777 somestreet where Jane lives'
   // };
   this.employeeLoggedIn = true;
-  this.customerLoggedIn = false;
+  this.customerLoggedIn = true;
 
-  this.updateCustomerInfo = function(user) {
-    customerService.updateCustomer(user, this.currentCustomer._id);
-    $log.log(this.currentCustomer);
-    return;
-  };
-
-  this.updateEmployeeInfo = function(employeeData) {
-    employeeService.updateEmployee(this.currentStore._id, this.currentEmployee._id, employeeData);
-    $log.log(this.currentEmployee);
-    return;
-  };
+  // this.updateCustomerInfo = function(user) {
+  //   customerService.updateCustomer(user, this.currentCustomer._id);
+  //   $log.log(this.currentCustomer);
+  //   return;
+  // };
+  //
+  // this.updateEmployeeInfo = function(employeeData) {
+  //   employeeService.updateEmployee(this.currentStore._id, this.currentEmployee._id, employeeData);
+  //   $log.log(this.currentEmployee);
+  //   return;
+  // };
 }
