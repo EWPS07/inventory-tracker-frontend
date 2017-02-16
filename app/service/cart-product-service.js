@@ -62,7 +62,7 @@ function cartProductService($q, $log, $http, customerService) {
           break;
         }
       }
-      return productArray;
+      return $q.resolve(productArray);
     })
     .catch(err => $log.error(err.message));
   };
