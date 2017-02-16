@@ -7,7 +7,7 @@ module.exports = {
   controller: ['$log', 'employeeService', EmployeeRecordController],
   controllerAs: 'employeeRecordCtrl',
   bindings: {
-    employee: '<'
+    employee: '<',
   }
 };
 
