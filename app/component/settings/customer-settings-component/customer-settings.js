@@ -13,9 +13,16 @@ function CustomerSettingsController($log, customerService) {
   this.currentCustomer = customerService.currentCustomer;
 
   this.updateCustomerInfo = function(user) {
+    $log.log('customerSettingsCtrl.updateCustomerInfo()');
+
     customerService.updateCustomer(user, this.currentCustomer._id);
-    $log.log(this.currentCustomer);
     return;
+  };
+
+  this.deleteCustomer = function(customerID) {
+    $log.log('customerSettingsCtrl.deleteCustomer()');
+
+    customerService.removeCustomer(this.currentCustomer, customerID);
   };
 
 }

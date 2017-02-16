@@ -56,6 +56,10 @@
         ng-submit="customerSettingsCtrl.updateCustomerInfo(customerSettingsCtrl.currentCustomer)">
         Confirm Changes
       </button>
+      <button
+        ng-submit="customerSettingsCtrl.deleteCustomer(customerSettingsCtrl.currentCustomer._id)">
+        delete account
+      </button>
     </fieldset>
   </form>
 </section>
