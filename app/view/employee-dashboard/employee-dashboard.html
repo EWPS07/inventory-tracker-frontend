@@ -2,7 +2,7 @@
     <h2>employee dashboard</h2>
 
     <!--TODO: BUILD OUT EMPLOYEE PROFILE COMPONENT-->
-    <employee-profile></employee-profile>
+    <!-- <employee-profile></employee-profile> -->
 
     <!--ALL FUNCTIONALITY BELOW THIS COMMENT IS FOR ADMINS ONLY-->
     <div class="employee-admin-container">
@@ -10,7 +10,7 @@
     <!--<div class="employee-admin-container" ng-hide="!employeeDashboardCtrl.admin">-->
 
     <!--TODO: BUILD OUT CREATE EMPLOYEE RECORD COMPONENT-->
-        <create-employee-record></create-employee-record>
+        <add-employee></add-employee>
 
         <input ng-model="employeeDashboardCtrl.query" type="text" placeholder="search employees">
 
@@ -18,10 +18,10 @@
             <ul>
                 <!--TODO: BUILD OUT EMPLOYEE RECORD COMPONENT-->
                 <employee-record
-                ng-repeat="record in employeeDashboardCtrl.employees | search: employeeDashboardCtrl.query"
-                employee="record"
-                delete-done="employeeDashboardCtrl.employeeDeleteDone(employeeData)"
-                ng-click="employeeDashboardCtrl.currentEmployee = record">
+                  ng-repeat="record in employeeDashboardCtrl.employees | nameSearch: employeeDashboardCtrl.query"
+                  employee="record"
+                  delete-done="employeeDashboardCtrl.employeeDeleteDone(employeeData)"
+                  ng-click="employeeDashboardCtrl.currentEmployee = record">
                 </employee-record>
             </ul>
         </div>
