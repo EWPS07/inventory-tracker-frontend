@@ -82,7 +82,7 @@ function employeeService($q, $log, $http, $window) {
   service.addEmployeeAsAdmin = function(storeID, employee) {
     $log.debug('employeeService.addEmployeeAsAdmin()');
 
-    return getToken()
+    return service.getToken()
     .then( token => {
       let url = `${__API_URL__}/api/store/${storeID}/employee`;
       let config = {
@@ -111,9 +111,9 @@ function employeeService($q, $log, $http, $window) {
   service.fetchEmployees = function(storeID) {
     $log.debug('employeeService.fetchEmployees()');
 
-    return getToken()
+    return service.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/store/${storeID}/employee`;
+      let url = `${__API_URL__}/api/store/${storeID}/employees`;
       let config = {
         headers: {
           Accept: 'application/json',
@@ -137,7 +137,7 @@ function employeeService($q, $log, $http, $window) {
   service.updateEmployee = function(storeID, employeeID, employeeData) {
     $log.debug('employeeService.updateEmployee()');
 
-    return getToken()
+    return service.getToken()
     .then( token => {
       let url = `${__API_URL__}/api/store/${storeID}/employee/${employeeID}`;
       let config = {
@@ -171,7 +171,7 @@ function employeeService($q, $log, $http, $window) {
   service.removeEmployee = function(storeID, employeeID) {
     $log.debug('employeeService.removeEmployee()');
 
-    return getToken()
+    return service.getToken()
     .then( token => {
       let url = `${__API_URL__}/api/store/${storeID}/employee/${employeeID}`;
       let config = {
