@@ -15,10 +15,14 @@ function AddEmployeeController($log, employeeService) {
   this.employee = {};
 
   this.addEmployeeRecord = function() {
-    employeeService.addEmployeeAsAdmin(this.employee)
+    employeeService.addEmployeeAsAdmin('58a49efb04c5864789600a5a', this.employee)
     .then( () => {
       this.employee.name = null;
-      this.employee.desc = null;
+      this.employee.email = null;
+      this.employee.password = null;
+      this.employee.admin = false;
+      this.employee.shipping = false;
+      this.employee.receiving = false;
     });
   };
 };
