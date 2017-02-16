@@ -32,7 +32,7 @@ function CartController($log, customerService) {
         "desc": "monkey",
         "name": "monkay",
         "price": 1099,
-        "quantity": 10
+        "quantity": 15
     }
 ],
 "shippingAddress": "aosfddu",
