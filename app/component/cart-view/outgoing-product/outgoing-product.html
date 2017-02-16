@@ -1,0 +1,18 @@
+<section class="outgoing-product">
+  <ul>
+    <li ng-repeat="product in outgoingProductCtrl.outgoingProducts">
+      <div>
+        <p>Name:
+          <span>{{product.name}}</span>
+          <span>Quantity: {{product.quantity}}</span>
+        </p>
+        <p>Description:
+          <span>{{product.desc}}</span>
+          <span>Subtotal: {{product.price * product.quantity | currency}}</span>
+        </p>
+      </div>
+      <button>Edit quantity</button>
+      <button>Remove from cart</button>
+    </li>
+  </ul>
+</section>
