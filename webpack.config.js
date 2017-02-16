@@ -55,7 +55,7 @@ module.exports = {
       },
       {
         test: /\.(woff|tt|svg|eot).*/,
-        loader: 'url?limit=10000&name=image/[hash].[ext]'
+        loader: 'url?limit=10000&name=font/[hash].[ext]'
       },
       {
         test: /\.(jpg|jpeg|svg|bmp|gif|png)$/,
