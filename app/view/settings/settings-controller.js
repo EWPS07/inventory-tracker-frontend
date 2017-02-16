@@ -2,14 +2,11 @@
 
 require('./_settings.scss');
 
-module.exports = ['$log', 'storeService', 'employeeService', 'employeeService', SettingsController];
+module.exports = ['$log', 'storeService', 'customerService', SettingsController];
 
-function SettingsController($log, storeService, employeeService, customerService) {
+function SettingsController($log, storeService, customerService) {
   $log.debug('SettingsController');
 
   this.currentStore = storeService.currentStore;
-  this.currentEmployee = employeeService.currentEmployee;
   this.currentCustomer = customerService.currentCustomer;
-  this.employeeLoggedIn = true;
-  this.customerLoggedIn = true;
 }
