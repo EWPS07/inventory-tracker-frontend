@@ -7,6 +7,9 @@ function customerService($location, $q, $log, $http, $window) {
 
   let service = {};
   service.currentCustomer = {};
+  service.currentActiveOrders = [];
+  service.currentOrder = [];
+  service.currentTotal = 0;
 
   service.signup = function(user) {
     $log.debug('customerService.signup()');

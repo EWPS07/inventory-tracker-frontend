@@ -31,6 +31,13 @@ function cartOrderService($log, $http, $q) {
     .catch(err => $log.error(err.message));
   };
 
+  service.updateOrder = function(orderID, orderData) {
+    $log.log('cartOrderService.updateOrder');
+
+    return $http.put(`${url}/${orderID}`, orderData, config)
+    .catch(err => $log.error(err.message));
+  };
+
   service.deleteOrder = function(orderID) {
     $log.log('cartOrderService.deleteOrder');
 
