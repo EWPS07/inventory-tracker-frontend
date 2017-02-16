@@ -1,3 +1,41 @@
-<section class="add-employee-record">
-  <!-- TODO: BUILD OUT MARKUP FOR ADD EMPLOYEE RECORD COMPONENT -->
+<section class="add-employee">
+
+  <form name="addEmployeeForm"
+    class="add-employee-form"
+    ng-submit="addEmployeeCtrl.addEmployeeRecord()">
+
+    <fieldset>
+      <label for="name">name:</label>
+      <input type="text"
+        class="input-std"
+        name="name"
+        ng-model="addEmployeeCtrl.employee.name"
+        required>
+    </fieldset>
+
+    <fieldset>
+      <label for="email">email:</label>
+      <input type="text"
+        class="input-std"
+        name="email"
+        ng-model="addEmployeeCtrl.employee.email"
+        required>
+    </fieldset>
+
+    <fieldset>
+      <label for="password">password:</label>
+      <input type="text"
+        class="input-std"
+        name="password"
+        ng-model="addEmployeeCtrl.employee.password"
+        required>
+    </fieldset>
+
+    <!-- TODO: BUILD OUT REST OF FIELDS, WAY TO MAP TO STORE -->
+
+    <button class="btn-std" type="submit">add new employee</button>
+  </form>
+
+  <div class="clearfix"></div>
+
 </section>
