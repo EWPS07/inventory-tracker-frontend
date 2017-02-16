@@ -2,22 +2,24 @@
 
 module.exports = {
   template: require('./cart-products.html'),
-  controller: ['$log', 'cartProductService', 'storeService', 'cartOrderService', 'customerService', 'inventoryProductService', CartProductController],
+  controller: ['$log', '$rootScope', 'cartProductService', 'storeService', 'cartOrderService', 'customerService', 'inventoryProductService', CartProductController],
   controllerAs: 'cartProductCtrl'
 };
 
-function CartProductController($log, cartProductService, storeService, cartOrderService, customerService, inventoryProductService) {
+function CartProductController($log, $rootScope, cartProductService, storeService, cartOrderService, customerService, inventoryProductService) {
   $log.log('Inventory Product Controller');
 
-  storeService.getStores()
-  .then(() => {
-    if (storeService.stores) storeService.currentStore = storeService.stores[0];
+  this.getStores = function() {
+    storeService.getStores()
+    .then(() => {
+      if (storeService.stores) storeService.currentStore = storeService.stores[0];
 
-    if (customerService.currentCustomer.favoriteStore) {
-      storeService.currentStore = storeService.stores.find(_store => _store.storeNumber === customerService.currentCustomer.favoriteStore);
-    }
-    this._storeService = storeService;
-  });
+      // if (customerService.currentCustomer.favoriteStore) {
+      //   storeService.currentStore = storeService.stores.find(_store => _store.storeNumber === customerService.currentCustomer.favoriteStore);
+      // }
+      this._storeService = storeService;
+    });
+  };
 
   this.createOrUpdateOrder = function() {
     return new Promise((resolve) => {
@@ -61,8 +63,11 @@ function CartProductController($log, cartProductService, storeService, cartOrder
             break;
           }
         }
-        console.log(customerService.currentCustomer);
       });
     });
   };
+
+  this.getStores();
+
+  $rootScope.$on('$locationChangeSuccess', () => this.getStores());
 }

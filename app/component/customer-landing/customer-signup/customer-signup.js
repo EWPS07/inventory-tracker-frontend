@@ -10,7 +10,7 @@ module.exports = {
 
 function CustomerSignupController($log, $location, customerService) {
   $log.debug('CustomerSignupController');
-  
+
   this.signup = function(customer) {
     $log.debug('customerSignupCtrl.signup()');
 
