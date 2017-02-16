@@ -10,15 +10,14 @@ function CurrentOrderController($log, $rootScope, customerService) {
   $log.log('Current order controller');
 
   this.getOrders = function() {
-    $log.log(customerService.currentCustomer);
     this.customerOrders = customerService.currentCustomer.currentOrders.filter(_order => !_order.completed).reverse();
     this.currentOrder = customerService.currentCustomer.currentOrders.filter(_order => !_order.completed).reverse()[0]._id;
-    $log.log(this.currentOrder);
-    $log.log(this.customerOrders);
+    customerService.currentOrder = this.currentOrder;
   };
 
   this.changeOrder = function(orderID) {
     this.currentOrder = customerService.currentCustomer.currentOrders.find(_order => _order._id === orderID)._id;
+    customerService.currentOrder = this.currentOrder;
   };
 
   this.getOrders();

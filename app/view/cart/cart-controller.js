@@ -13,7 +13,7 @@ function CartController($log, customerService) {
       "email": "aosufh",
       "name": "Steven",
       "username": "steve"
-    }
+    };
     customerService.counter++;
   }
 }
