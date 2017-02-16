@@ -17,7 +17,8 @@
     </ul>
   </div>
 
-  <form class="new-info">
+  <form class="new-info"
+    ng-submit="employeeSettingsCtrl.updateEmployeeInfo(employeeSettingsCtrl.currentEmployee)">
     <fieldset>
       <div class="input-group">
         <input
@@ -53,8 +54,7 @@
           placeholder="password">
       </div>
       <button
-        class="btn btn-default"
-        ng-submit="employeeSettingsCtrl.updateEmployeeInfo(employeeSettingsCtrl.currentEmployee)">
+        type="submit">
         Confirm Changes
       </button>
     </fieldset>

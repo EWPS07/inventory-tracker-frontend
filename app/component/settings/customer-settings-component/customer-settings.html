@@ -17,7 +17,9 @@
     </ul>
   </div>
 
-  <form class="new-info">
+  <form
+    class="new-info"
+    ng-submit="customerSettingsCtrl.updateCustomerInfo(customerSettingsCtrl.currentCustomer)">
     <fieldset>
       <div class="input-group">
         <input
@@ -53,13 +55,14 @@
           placeholder="password">
       </div>
       <button
-        ng-submit="customerSettingsCtrl.updateCustomerInfo(customerSettingsCtrl.currentCustomer)">
-        Confirm Changes
+        type="submit">
+          Confirm Changes
       </button>
-      <button
+      <!-- <button
+        type="submit"
         ng-submit="customerSettingsCtrl.deleteCustomer(customerSettingsCtrl.currentCustomer._id)">
         delete account
-      </button>
+      </button> -->
     </fieldset>
   </form>
 </section>

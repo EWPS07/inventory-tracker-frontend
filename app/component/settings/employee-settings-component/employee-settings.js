@@ -11,10 +11,10 @@ function EmployeeSettingsController($log, employeeService) {
   $log.debug('EmployeeSettingsController');
 
   this.currentEmployee = employeeService.currentEmployee;
-  
+
   this.updateEmployeeInfo = function(employeeData) {
-    employeeService.updateEmployee(this.currentStore._id, this.currentEmployee._id, employeeData);
     $log.log(this.currentEmployee);
-    return;
+
+    employeeService.updateEmployee(this.currentStore._id, this.currentEmployee._id, employeeData);
   };
 }
