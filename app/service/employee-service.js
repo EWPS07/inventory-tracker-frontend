@@ -134,12 +134,12 @@ function employeeService($q, $log, $http, $window) {
     });
   };
 
-  service.updateEmployee = function(storeID, employeeID, employeeData) {
+  service.updateEmployee = function(employeeID, employeeData) {
     $log.debug('employeeService.updateEmployee()');
 
     return service.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/store/${storeID}/employee/${employeeID}`;
+      let url = `${__API_URL__}/api/employee/${employeeID}`;
       let config = {
         headers: {
           Accept: 'application/json',
@@ -168,12 +168,12 @@ function employeeService($q, $log, $http, $window) {
     });
   };
 
-  service.removeEmployee = function(storeID, employeeID) {
+  service.removeEmployee = function(employeeID) {
     $log.debug('employeeService.removeEmployee()');
 
     return service.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/store/${storeID}/employee/${employeeID}`;
+      let url = `${__API_URL__}/api/employee/${employeeID}`;
       let config = {
         headers: {
           Authorization: `Bearer ${token}`
