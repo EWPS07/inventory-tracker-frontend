@@ -4,13 +4,26 @@
     <!--TODO: BUILD OUT EMPLOYEE PROFILE COMPONENT-->
     <!-- <employee-profile></employee-profile> -->
 
+    <div class="store-selection">
+      <div>
+        <h2>Store {{employeeDashboardCtrl.currentStoreNumber}}</h2>
+        <p>{{employeeDashboardCtrl.currentStore.address}}</p>
+      </div>
+
+      <div>
+        <span class="store-selector">change store location:</span>
+        <select ng-model="employeeDashboardCtrl.currentStoreNumber" ng-change="employeeDashboardCtrl.changeStore(employeeDashboardCtrl.currentStoreNumber)">
+          <option ng-repeat="store in employeeDashboardCtrl.allStores" value="{{store.storeNumber}}">{{store.storeNumber}}</option>
+        </select>
+      </div>
+    </div>
+
     <!--ALL FUNCTIONALITY BELOW THIS COMMENT IS FOR ADMINS ONLY-->
     <div class="employee-admin-container">
         <!--NEED LOGIC TO MAKE NG-HIDE FUNCTIONALITY WORK-->
     <!--<div class="employee-admin-container" ng-hide="!employeeDashboardCtrl.admin">-->
 
-    <!--TODO: BUILD OUT CREATE EMPLOYEE RECORD COMPONENT-->
-        <add-employee></add-employee>
+        <add-employee store="employeeDashboardCtrl.currentStore"></add-employee>
 
         <input ng-model="employeeDashboardCtrl.query" type="text" placeholder="search employees">
 
@@ -20,6 +33,7 @@
                 <employee-record
                   ng-repeat="record in employeeDashboardCtrl.employees | nameSearch: employeeDashboardCtrl.query"
                   employee="record"
+                  store="employeeDashboardCtrl.currentStore"
                   delete-done="employeeDashboardCtrl.employeeDeleteDone(employeeData)"
                   ng-click="employeeDashboardCtrl.currentEmployee = record">
                 </employee-record>
