@@ -18,7 +18,16 @@ function cartProductService($q, $log, $http, customerService) {
   service.createCartProduct = function(cartOrderID, storeID, productData, cartOrder) {
     $log.debug('cartProductService.createCartProduct()');
 
-    return $http.post(`${url}/orders/${cartOrderID}/${storeID}/cart`, productData, config)
+    let sentProduct = {
+      name: productData.name,
+      desc: productData.desc,
+      quantity: productData.quantity,
+      buyQuantity: productData.buyQuantity,
+      category: productData.category,
+      price: productData.price
+    };
+    
+    return $http.post(`${url}/orders/${cartOrderID}/${storeID}/cart`, sentProduct, config)
     .then(response => {
       for (var i = 0; i < customerService.currentCustomer.currentOrders.length; i++) {
         if (customerService.currentCustomer.currentOrders[i]._id === cartOrder._id) {

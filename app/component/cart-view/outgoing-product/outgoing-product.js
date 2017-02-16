@@ -2,11 +2,11 @@
 
 module.exports = {
   template: require('./outgoing-product.html'),
-  controller: ['$log', 'customerService', 'cartProductService', 'cartOrderService', OutgoingProductController],
+  controller: ['$log', '$location', 'customerService', 'cartProductService', 'cartOrderService', OutgoingProductController],
   controllerAs: 'outgoingProductCtrl'
 };
 
-function OutgoingProductController($log, customerService, cartProductService, cartOrderService) {
+function OutgoingProductController($log, $location, customerService, cartProductService, cartOrderService) {
   $log.log('Outgoing product controller');
 
   this.customerService = customerService;
@@ -46,5 +46,11 @@ function OutgoingProductController($log, customerService, cartProductService, ca
         cartOrderService.deleteOrder(product.cartOrderID);
       }
     });
+  };
+
+  this.completeOrder = function() {
+    customerService.currentOrder.completed = true;
+    cartOrderService.updateOrder(customerService.currentOrder._id, customerService.currentOrder)
+    .then(() => $location.url('/shopping'));
   };
 }
