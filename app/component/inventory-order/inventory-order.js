@@ -36,8 +36,7 @@ function InventoryOrderController($log, storeService, inventoryOrderService, inv
   this.addToOrder = function(product) {
     this.createOrder()
     .then(() => {
-      $log.log(inventoryOrderService.currentOrder);
-      let updateProduct = this.currentOrder.inventories.find(_product => _product.desc === product.desc);
+      let updateProduct = inventoryOrderService.currentOrder.inventories.find(_product => _product.desc === product.desc);
 
       if(updateProduct){
         updateProduct.quantity += updateProduct.buyQuantity;
@@ -45,6 +44,7 @@ function InventoryOrderController($log, storeService, inventoryOrderService, inv
         return;
       }
       product.quantity = product.buyQuantity;
+      $log.log(inventoryOrderService.currentOrder);
       inventoryProductService.addProductToInventoryOrder(product, this.currentOrder._id);
     });
   };
