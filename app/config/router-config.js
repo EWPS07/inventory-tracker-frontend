@@ -35,7 +35,7 @@ function routerConfig($stateProvider, $urlRouterProvider) {
       url: '/employee',
       template: require('../view/employee-dashboard/employee-dashboard.html'),
       controller: 'EmployeeDashboardController',
-      controllerAs: 'EmployeeDashboardCtrl'
+      controllerAs: 'employeeDashboardCtrl'
     },
     {
       name: 'customer-dashboard',
