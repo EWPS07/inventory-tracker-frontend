@@ -11,7 +11,7 @@
         </p>
         <p>Description:
           <span>{{product.desc}}</span>
-          <span>Subtotal: {{product.price * product.quantity | currency}}</span>
+          <span>Subtotal: {{(product.price * product.quantity)/100| currency}}</span>
         </p>
       </div>
       <button ng-show="!product.editMe" ng-click="product.newQuantity = product.quantity; product.editMe = true">Edit quantity</button>
