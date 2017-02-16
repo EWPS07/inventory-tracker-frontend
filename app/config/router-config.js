@@ -31,6 +31,13 @@ function routerConfig($stateProvider, $urlRouterProvider) {
       controllerAs: 'employeelandingCtrl'
     },
     {
+      name: 'customer-landing',
+      url: '/create-account',
+      template: require('../view/customer-landing/customer-landing.html'),
+      controller: 'CustomerLandingController',
+      controllerAs: 'customerLandingCtrl'
+    },
+    {
       name: 'employee-dashboard',
       url: '/employee',
       template: require('../view/employee-dashboard/employee-dashboard.html'),

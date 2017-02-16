@@ -1,0 +1,30 @@
+<section
+  class="customer-landing">
+  <div
+    ng-if="customerLandingCtrl.showSignup">
+    <div>
+      <customer-signup></customer-signup>
+        <span>
+          <p>Already a member?</p>
+          <a href="/#create-account"
+            ng-click="customerLandingCtrl.showSignup=false">
+            Sign in here
+          </a>
+        </span>
+    </div>
+  </div>
+
+  <div
+    ng-if="!customerLandingCtrl.showSignup">
+    <div>
+      <customer-login></customer-login>
+      <span>
+        <p>Want to signup?</p>
+        <a href="/#/create-account"
+          ng-click="customerLandingCtrl.showSignup=true">
+          Sign up here
+        </a>
+      </span>
+    </div>
+  </div>
+</section>
