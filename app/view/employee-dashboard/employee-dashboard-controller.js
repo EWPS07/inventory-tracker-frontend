@@ -10,7 +10,9 @@ function EmployeeDashboardController($log, $rootScope, employeeService) {
     this.employees = [];
 
     this.fetchEmployees = function() {
-        employeeService.fetchEmployees()
+        // HARD-CODED STORE ID PASSED IN FOR NOW TO TEST VIEW
+        // TODO: build out method to populate fetchEmployees with store id.
+        employeeService.fetchEmployees('58a49efb04c5864789600a5a')
         .then( employees => {
             this.employees = employees;
             this.currentEmployee = employees[0];
