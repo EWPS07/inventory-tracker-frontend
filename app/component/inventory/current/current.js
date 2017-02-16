@@ -11,6 +11,7 @@ function CurrentController($log, storeService, inventoryProductService) {
 
   this.storeService = storeService;
   this.editProduct = function(product) {
+    product.editMe = false;
     product.name = product.newName;
     product.desc = product.newDesc;
     product.quantity = product.newQuantity;

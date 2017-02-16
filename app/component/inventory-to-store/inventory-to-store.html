@@ -1,0 +1,11 @@
+<section class="inventory-to-store">
+  <form
+  ng-submit="inventoryToStoreCtrl.addProduct()">
+    <input type="text" ng-model="inventoryToStoreCtrl.product.name" placeholder="Name" required>
+    <input type="text" ng-model="inventoryToStoreCtrl.product.desc" placeholder="Description" required>
+    <input type="text" ng-model="inventoryToStoreCtrl.product.category" placeholder="Category" required>
+    <input type="number" ng-model="inventoryToStoreCtrl.product.quantity" placeholder="Quantity" required>
+    <input type="number" ng-model="inventoryToStoreCtrl.product.price" placeholder="Price" required>
+    <button type="submit">Add Product</button>
+  </form>
+</section>
