@@ -1,6 +1,6 @@
 <section class="outgoing-product">
   <ul>
-    <li ng-repeat="product in outgoingProductCtrl.outgoingProducts">
+    <li ng-repeat="product in outgoingProductCtrl.customerService.currentOrder.products">
       <div>
         <p>Name:
           <span>{{product.name}}</span>

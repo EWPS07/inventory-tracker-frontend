@@ -63,12 +63,11 @@ function CartProductController($log, $rootScope, cartProductService, storeServic
             break;
           }
         }
-        console.log(customerService.currentCustomer);
       });
     });
   };
 
   this.getStores();
-  
+
   $rootScope.$on('$locationChangeSuccess', () => this.getStores());
 }

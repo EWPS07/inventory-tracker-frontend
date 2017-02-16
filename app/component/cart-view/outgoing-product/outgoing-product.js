@@ -9,5 +9,5 @@ module.exports = {
 function OutgoingProductController($log, customerService) {
   $log.log('Outgoing product controller');
 
-  this.outgoingProducts = customerService.currentOrder.products;
+  this.customerService = customerService;
 }

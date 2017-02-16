@@ -12,12 +12,12 @@ function CurrentOrderController($log, $rootScope, customerService) {
   this.getOrders = function() {
     this.customerOrders = customerService.currentCustomer.currentOrders.filter(_order => !_order.completed).reverse();
     this.currentOrder = customerService.currentCustomer.currentOrders.filter(_order => !_order.completed).reverse()[0]._id;
-    customerService.currentOrder = this.currentOrder;
+    customerService.currentOrder = this.customerOrders[0];
   };
 
   this.changeOrder = function(orderID) {
     this.currentOrder = customerService.currentCustomer.currentOrders.find(_order => _order._id === orderID)._id;
-    customerService.currentOrder = this.currentOrder;
+    customerService.currentOrder = customerService.currentCustomer.currentOrders.find(_order => _order._id === orderID);
   };
 
   this.getOrders();
