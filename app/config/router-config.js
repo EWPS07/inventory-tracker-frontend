@@ -5,6 +5,7 @@ module.exports = ['$stateProvider', '$urlRouterProvider', routerConfig];
 function routerConfig($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.when('', '/join#signup');
   $urlRouterProvider.when('/', '/join#signup');
+  $urlRouterProvider.when('/customer', '/create-account#login');
   $urlRouterProvider.when('/signup', '/join#signup');
   $urlRouterProvider.when('/login', '/join#login');
 
@@ -36,6 +37,13 @@ function routerConfig($stateProvider, $urlRouterProvider) {
       template: require('../view/employee-landing/employee-landing.html'),
       controller: 'EmployeeLandingController',
       controllerAs: 'employeelandingCtrl'
+    },
+    {
+      name: 'customer-landing',
+      url: '/create-account',
+      template: require('../view/customer-landing/customer-landing.html'),
+      controller: 'CustomerLandingController',
+      controllerAs: 'customerLandingCtrl'
     },
     {
       name: 'employee-dashboard',
