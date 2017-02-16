@@ -94,6 +94,7 @@ function customerService($location, $q, $log, $http, $window) {
     };
 
     return $http.delete(url, config)
+    .then(service.currentCustomer = {})
     .catch( err => {
       $log.error(err.message);
       return $q.reject(err);

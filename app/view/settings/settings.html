@@ -1,10 +1,7 @@
 <section class="settings">
   <h2>Account Settings</h2>
-  <employee-settings
-    ng-if="settingsCtrl.employeeLoggedIn"
-  ></employee-settings>
 
   <customer-settings
-    ng-if="settingsCtrl.customerLoggedIn"
+    ng-if="settingsCtrl.currentCustomer.hasOwnProperty('name')"
   ></customer-settings>
 </section>
