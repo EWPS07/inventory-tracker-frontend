@@ -72,6 +72,9 @@ function customerService($location, $q, $log, $http, $window) {
     };
 
     return $http.put(url, user, config)
+    .then( res => {
+      service.currentCustomer = res.data;
+    })
     .catch( err => {
       $log.error(err.message);
       return $q.reject(err);

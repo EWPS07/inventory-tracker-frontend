@@ -3,35 +3,45 @@
   <div class="current-info">
     <ul>
       <li>
-        <span>Name: {{ settingsCtrl.currentEmployee.name }}</span>
+        <span>Name: {{ employeeSettingsCtrl.currentEmployee.name }}</span>
       </li>
       <li>
-        <span>Address: {{ settingsCtrl.currentEmployee.email }}</span>
+        <span>Username: {{ employeeSettingsCtrl.currentEmployee.username }}</span>
       </li>
       <li>
-        <span>Email: {{ settingsCtrl.currentEmployee.address }}</span>
+        <span>Address: {{ employeeSettingsCtrl.currentEmployee.email }}</span>
+      </li>
+      <li>
+        <span>Email: {{ employeeSettingsCtrl.currentEmployee.address }}</span>
       </li>
     </ul>
   </div>
 
-  <form class="new-info">
+  <form class="new-info"
+    ng-submit="employeeSettingsCtrl.updateEmployeeInfo(employeeSettingsCtrl.currentEmployee)">
     <fieldset>
       <div class="input-group">
         <input
-          ng-model="settingsCtrl.currentEmployee.name"
+          ng-model="employeeSettingsCtrl.currentEmployee.name"
           type="text"
           class="input-default"
           placeholder="Your name">
 
         <input
-          ng-model="settingsCtrl.currentEmployee.address"
+          ng-model="employeeSettingsCtrl.currentEmployee.username"
+          type="text"
+          class="input-default"
+          placeholder="Your username">
+
+        <input
+          ng-model="employeeSettingsCtrl.currentEmployee.address"
           type="text"
           class="input-default"
           placeholder="Your address">
 
         <input
-          ng-model="settingsCtrl.currentEmployee.email"
-          type="text"
+          ng-model="employeeSettingsCtrl.currentEmployee.email"
+          type="email"
           class="input-default"
           placeholder="Your email">
 
@@ -44,10 +54,9 @@
           placeholder="password">
       </div>
       <button
-        class="btn btn-default"
-        ng-submit="settingsCtrl.updateEmployeeInfo()">
+        type="submit">
         Confirm Changes
-      <button>
+      </button>
     </fieldset>
   </form>
 </section>
