@@ -11,10 +11,10 @@ module.exports = {
 function CustomerLoginController($log, $location, customerService) {
   $log.debug('CustomerLoginController');
 
-  this.login = function() {
+  this.login = function(customer) {
     $log.log('customerLoginCtrl.login()');
 
-    customerService.login()
+    customerService.login(customer)
     .then( () => {
       $location.url('/customer-dashboard');
     });

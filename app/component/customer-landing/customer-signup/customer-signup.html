@@ -15,7 +15,11 @@
         placeholder="username"
         ng-model="customerSignupCtrl.customer.username"
         required>
-
+      <input
+        type="text"
+        placeholder="address"
+        ng-model="customerSignupCtrl.customer.address"
+        required>
       <input
         type="email"
         placeholder="email"
@@ -27,7 +31,9 @@
         ng-model="customerSignupCtrl.customer.password"
         required>
 
-      <input
-        type="submit"
+      <button
+        type="submit">
+        signup
+      </button>
   </form>
 </section>
