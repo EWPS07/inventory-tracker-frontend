@@ -1,0 +1,28 @@
+<section class="cart-products">
+  <input ng-model="cartProductCtrl.searchTerm" type="text" placeholder="Search for a product">
+  <ul>
+    <li ng-repeat="(index, product) in cartProductCtrl._storeService.currentStore.current | categorySearch: cartProductCtrl.searchTerm track by $index">
+      <div>
+        <p>Name:
+          <span>
+            {{product.name}}
+          </span>
+          <span>
+            {{product.price/100 | currency}}
+          </span>
+        </p>
+        <p>Description:
+          <span>
+            {{product.desc}}
+          </span>
+          <span ng-if="product.quantity < 6">
+            Only {{product.quantity}} left!
+          </span>
+        </p>
+        <span>Quantity:</span>
+        <input type="number" ng-model="cartProductCtrl._storeService.currentStore.current[index].buyQuantity">
+        <button ng-click="cartProductCtrl.addToCart(product)">Add to cart</button>
+      </div>
+    </li>
+  </ul>
+</section>

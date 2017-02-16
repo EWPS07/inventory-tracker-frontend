@@ -1,0 +1,66 @@
+<section class="add-employee">
+
+  <form name="addEmployeeForm"
+    class="add-employee-form"
+    ng-submit="addEmployeeCtrl.addEmployeeRecord()">
+
+    <fieldset>
+      <label for="name">name:</label>
+      <input type="text"
+        class="input-std"
+        name="name"
+        ng-model="addEmployeeCtrl.employee.name"
+        required>
+    </fieldset>
+
+    <fieldset>
+      <label for="email">email:</label>
+      <input type="text"
+        class="input-std"
+        name="email"
+        ng-model="addEmployeeCtrl.employee.email"
+        required>
+    </fieldset>
+
+    <fieldset>
+      <label for="password">password:</label>
+      <input type="text"
+        class="input-std"
+        name="password"
+        ng-model="addEmployeeCtrl.employee.password"
+        required>
+    </fieldset>
+
+    <fieldset>
+      <label for="admin">admin?</label>
+      <select type="text"
+        class="input-std"
+        name="admin"
+        ng-model="addEmployeeCtrl.employee.admin"
+        ng-options="option.bool as option.selection for option in [{ selection: 'No', bool: false }, { selection: 'Yes', bool: true }]"
+        required>
+      </select>
+
+      <label for="shipping">shipping?</label>
+      <select class="option-std"
+        name="shipping"
+        ng-model="addEmployeeCtrl.employee.shipping"
+        ng-options="option.bool as option.selection for option in [{ selection: 'No', bool: false }, { selection: 'Yes', bool: true }]">
+      </select>
+
+      <label for="receiving">receiving?</label>
+      <select class="option-std"
+        name="receiving"
+        ng-model="addEmployeeCtrl.employee.receiving"
+        ng-options="option.bool as option.selection for option in [{ selection: 'No', bool: false }, { selection: 'Yes', bool: true }]">
+      </select>
+    </fieldset>
+
+    <!-- TODO: BUILD OUT REST OF FIELDS, WAY TO MAP TO STORE -->
+
+    <button class="btn-std" type="submit">add new employee</button>
+  </form>
+
+  <div class="clearfix"></div>
+
+</section>

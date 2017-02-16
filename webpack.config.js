@@ -29,7 +29,7 @@ if(production) {
     }),
     new CleanPlugin()
   ]);
-};
+}
 
 module.exports = {
   entry: `${__dirname}/app/entry.js`,
@@ -48,6 +48,10 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel'
+      },
+      {
+        test: /\.html$/,
+        loader: 'html'
       },
       {
         test: /\.(woff|tt|svg|eot).*/,

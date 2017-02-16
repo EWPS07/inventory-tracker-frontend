@@ -1,0 +1,39 @@
+<section
+  class="customer-signup">
+  <form
+    ng-submit="customerSignupCtrl.signup(customerSignupCtrl.customer)"
+    novalidate>
+
+      <input
+        type="text"
+        placeholder="name"
+        ng-model="customerSignupCtrl.customer.name"
+        required>
+
+      <input
+        type="text"
+        placeholder="username"
+        ng-model="customerSignupCtrl.customer.username"
+        required>
+      <input
+        type="text"
+        placeholder="address"
+        ng-model="customerSignupCtrl.customer.address"
+        required>
+      <input
+        type="email"
+        placeholder="email"
+        ng-model="customerSignupCtrl.customer.email">
+
+      <input
+        type="password"
+        placeholder="password"
+        ng-model="customerSignupCtrl.customer.password"
+        required>
+
+      <button
+        type="submit">
+        signup
+      </button>
+  </form>
+</section>
