@@ -1,0 +1,35 @@
+<section class="current-inventory">
+  <ul>
+    <li>ID #</li>
+    <li>NAME</li>
+    <li>DESCRIPTION</li>
+    <li>QUANTITY</li>
+    <li>PRICE</li>
+    <li>CATEGORY</li>
+  </ul>
+
+  <ul>
+    <li
+    ng-repeat="(index, product) in currentCtrl.storeService.currentStore.current track by $index">
+    <span>{{ product._id }}</span>
+    <span>{{ product.name }}</span>
+    <input type="text" ng-if="product.editMe" ng-model="currentCtrl.storeService.currentStore.current[index].newName">
+    <span>{{ product.desc }}</span>
+    <input type="text" ng-if="product.editMe" ng-model="currentCtrl.storeService.currentStore.current[index].newDesc">
+    <span>{{ product.quantity }}</span>
+    <input type="number" ng-if="product.editMe" ng-model="currentCtrl.storeService.currentStore.current[index].newQuantity">
+    <span>{{ product.price }}</span>
+    <input type="number" ng-if="product.editMe" ng-model="currentCtrl.storeService.currentStore.current[index].newPrice">
+    <span>{{ product.category }}</span>
+    <input type="text" ng-if="product.editMe" ng-model="currentCtrl.storeService.currentStore.current[index].newCategory">
+    <span
+    ng-show="!product.editMe" ng-click="product.editMe = true; product.newQuantity = product.quantity;
+    product.newName = product.name;
+    product.newPrice = product.price;
+    product.newDesc = product.desc;
+    product.newCategory = product.category">Edit</span>
+    <span
+    ng-show="product.editMe" ng-click="currentCtrl.editProduct(product)">Update</span>
+    </li>
+  </ul>
+</section>

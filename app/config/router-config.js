@@ -57,7 +57,14 @@ function routerConfig($stateProvider, $urlRouterProvider) {
       url: '/customer-dashboard',
       template: require('../view/customer-dashboard/customer-dashboard.html'),
       controller: 'CustomerDashboardController',
-      controllerAs: 'CustomerDashboardCtrl'
+      controllerAs: 'customerDashboardCtrl'
+    },
+    {
+      name: 'inventory',
+      url: '/inventory',
+      template: require('../view/inventory/inventory.html'),
+      controller: 'InventoryController',
+      controllerAs: 'inventoryCtrl'
     }
   ];
 

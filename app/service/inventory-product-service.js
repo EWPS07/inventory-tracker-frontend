@@ -26,7 +26,11 @@ function inventoryProductService($q, $log, $http, storeService) {
     };
 
     return $http.post(url, product, config)
-    .then( res => service.currentInventory.push(res.data))
+    .then( res => {
+      storeService.currentStore.current.push(res.data);
+      res.data.editMe = false;
+      return $q.resolve(res.data);
+    })
     .catch( err => $log.error(err.message));
   };
 
