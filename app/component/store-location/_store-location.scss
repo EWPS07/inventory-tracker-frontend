@@ -9,17 +9,18 @@
 
   select {
     background: $white;
-    margin: $gutter-sm;
+    margin-bottom: $gutter-sm;
+    clear: right;
     float: right;
     width: 15vw;
   }
 
   div:nth-child(2) {
-    padding: 1vw;
+    padding: 1vw 3vw 0 0;
 
     p {
+      margin: 1vh 0;
       float: right;
-      margin: $gutter-sm;
     }
   }
 
