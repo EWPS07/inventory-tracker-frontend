@@ -1,11 +1,17 @@
 //:::: ----------------- BASE STYLES AND VARS ----------------- :::://
 @import "lib/base/reset";
 @import "lib/theme/vars";
+@import "lib/bootstrap/custom-bootstrap-vars";
+@import "lib/bootstrap/custom-bootstrap";
 @import "lib/base/base";
 
 //:::: ----------------- MAIN LAYOUT CONTAINERS ----------------- :::://
-// @import "lib/layout/header";
+@import "lib/layout/header";
 @import "lib/layout/main";
 @import "lib/layout/footer";
 
+//:::: ----------------- VIEWS ---------------------- :::://
+@import "../view/settings/settings";
+
 //:::: ----------------- COMPONENTS ----------------- :::://
+@import "../component/settings/customer-settings-component/customer-settings";
