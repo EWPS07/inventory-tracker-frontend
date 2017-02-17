@@ -15,6 +15,7 @@
       <td>{{ order._id }}</td>
       <td>{{ order.date | date:"MM/dd/yyyy" }}</td>
       <td>{{ order.shippingName }}</td>
+
       <td><span ng-show="!order.completed">Pending</span><span ng-show="order.completed">Completed</span></td>
     </tr>
 

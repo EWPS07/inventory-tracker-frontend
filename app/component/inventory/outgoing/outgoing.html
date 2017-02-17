@@ -1,17 +1,21 @@
 <section class="outgoing-orders">
-  <ul>
-    <li>ID #</li>
-    <li>SHIP TO</li>
-    <li>DATE</li>
-    <li>COMPLETED</li>
-  </ul>
 
-  <ul>
-    <li
-    ng-repeat="(index, order) in outgoingCtrl.storeService.currentStore.outgoing track by $index">
-    <span>{{ order._id }}</span>
-    <span>{{ order.shippingName }}</span>
-    <span>{{ order.date | date:"MM/dd/yyyy"}}</span>
-    <span>{{ order.completed }}</span>
-  </ul>
+  <table>
+
+    <tr>
+      <td>ID #</td>
+      <td>SHIP TO</td>
+      <td>DATE</td>
+      <td>COMPLETED</td>
+    </tr>
+
+    <tr ng-repeat="(index, order) in outgoingCtrl.storeService.currentStore.outgoing track by $index">
+        <td>{{ order._id }}</td>
+        <td>{{ order.shippingName }}</td>
+        <td>{{ order.date | date:"MM/dd/yyyy"}}</td>
+        <td>{{ order.completed }}</td>
+    </tr>
+
+  </table>
+
 </section>
