@@ -25,40 +25,42 @@
         <input
           ng-model="customerSettingsCtrl.currentCustomer.name"
           type="text"
-          class="input-default"
+          class="input-lg"
           placeholder="Your name">
 
         <input
           ng-model="customerSettingsCtrl.currentCustomer.username"
           type="text"
-          class="input-default"
+          class="input-lg"
           placeholder="Your username">
 
         <input
           ng-model="customerSettingsCtrl.currentCustomer.address"
           type="text"
-          class="input-default"
+          class="input-lg"
           placeholder="Your address">
 
         <input
           ng-model="customerSettingsCtrl.currentCustomer.email"
           type="email"
-          class="input-default"
+          class="input-lg"
           placeholder="Your email">
 
         <input
           ng-model="customerSettingsCtrl.currentCustomer.password"
           type="password"
-          class="input-default"
+          class="input-lg"
           placeholder="New password"
 
       </div>
       <button
+        class="btn-success"
         type="submit">
           Confirm Changes
       </button>
     </fieldset>
     <button
+      class="btn-danger"
       ng-click="customerSettingsCtrl.deleteCustomer(customerSettingsCtrl.currentCustomer._id)">
       delete account
     </button>

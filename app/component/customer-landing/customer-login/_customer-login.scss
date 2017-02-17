@@ -1,0 +1,10 @@
+@import "../../../scss/lib/bootstrap/custom-bootstrap-vars";
+@import "../../../scss/lib/theme/vars";
+.customer-login {
+  width: 100%;
+  .input-lg {
+    width: 50%;
+    display: block;
+    margin: $gutter-sm;
+  }
+}
