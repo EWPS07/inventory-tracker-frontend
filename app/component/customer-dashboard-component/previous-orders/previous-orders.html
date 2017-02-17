@@ -15,11 +15,7 @@
   </div>
 
   <div>
-    <span class="orders-data-title">ORDER TOTAL</span>
-  </div>
-
-  <div>
-    <span class="orders-data-title">STATUS</span>
+    <span class="orders-data-title">COMPLETED</span>
   </div>
 
   <ul>
@@ -28,9 +24,7 @@
       <span class="order-data">{{ order._id }}</span>
       <span class="order-data">{{ order.date | date:"MM/dd/yyyy" }}</span>
       <span class="order-data">{{ order.shippingName }}</span>
-      <span class="order-data">TOTAL</span>
       <span class="order-data">{{ order.completed }}</span>
-      <span class="order-data"><a href="#">View Order</a></span>
     </li>
   </ul>
 </section>

@@ -29,4 +29,4 @@ function AddEmployeeController($log, storeService, employeeService) {
       this.employee.receiving = false;
     });
   };
-};
+}

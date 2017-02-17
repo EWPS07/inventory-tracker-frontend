@@ -32,21 +32,10 @@
     </div>
   </div>
 
-  <!-- TODO: BUILD OUT EDIT EMPLOYEE COMPONENT -->
-  <edit-employee
-    ng-if="employeeRecordCtrl.showEditEmployeeRecord"
-    employee="employeeRecordCtrl.employee">
-  </edit-employee>
-
   <button
     class="btn-small"
     ng-click="employeeRecordCtrl.deleteEmployeeRecord()"
     ng-show="!employeeRecordCtrl.showEditEmployeeRecord">delete</button>
-
-  <button
-    class="btn-small"
-    ng-click="employeeRecordCtrl.showEditEmployeeRecord = !employeeRecordCtrl.showEditEmployeeRecord"
-    ng-show="!employeeRecordCtrl.showEditEmployeeRecord">edit</button>
 
   <div class="clearfix"></div>
 

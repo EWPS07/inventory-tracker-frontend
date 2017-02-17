@@ -24,4 +24,4 @@ function EmployeeSignupController($log, $location, employeeService) {
       $location.url('/employee');
     });
   };
-};
+}

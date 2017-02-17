@@ -2,20 +2,16 @@
 
 module.exports = {
   template: require('./store-location.html'),
-  controller: ['$log', 'storeService', '$rootScope', 'customerService', StoreLocationController],
+  controller: ['$log', 'storeService', StoreLocationController],
   controllerAs: 'storeLocationCtrl'
 };
 
-function StoreLocationController($log, storeService, customerService) {
+function StoreLocationController($log, storeService) {
   $log.log('Store Location Controller');
 
   storeService.getStores()
   .then(() => {
     if (storeService.stores) storeService.currentStore = storeService.stores[0];
-
-    // if (customerService.currentCustomer.favoriteStore) {
-    //   storeService.currentStore = storeService.stores.find(_store => _store.storeNumber === customerService.currentCustomer.favoriteStore);
-    // }
 
     this.currentStore = storeService.currentStore;
     this.allStores = storeService.stores;

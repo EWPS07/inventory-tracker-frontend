@@ -19,4 +19,4 @@ function EmployeeRecordController($log, employeeService) {
   this.deleteEmployeeRecord = function() {
     employeeService.removeEmployee(this.employee._id);
   };
-};
+}
