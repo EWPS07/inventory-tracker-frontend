@@ -1,10 +1,13 @@
 @import "../../../scss/lib/bootstrap/custom-bootstrap-vars";
 @import "../../../scss/lib/theme/vars";
 .customer-signup {
-  width: 100%;
+  text-align: center;
   .input-lg {
     width: 50%;
-    display: block;
-    margin: $gutter-sm;
+    display: inline-block;
+    margin: $gutter-sm / 2;
+  }
+  button {
+    display: inline-block;
   }
 }
