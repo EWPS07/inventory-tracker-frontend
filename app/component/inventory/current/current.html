@@ -11,8 +11,7 @@
   </table>
 
   <table>
-    <tr>
-      <td
+    <tr
       ng-repeat="(index, product) in currentCtrl.storeService.currentStore.current track by $index">
       <td>{{ product._id }}</td>
       <td ng-show="!product.editMe">{{ product.name }}</td>
@@ -33,7 +32,6 @@
       product.newCategory = product.category">Edit</span>
       <span
       ng-show="product.editMe" ng-click="currentCtrl.editProduct(product)">Update</span>
-      </td>
     </tr>
   </table>
 </section>

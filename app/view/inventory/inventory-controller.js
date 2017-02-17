@@ -1,5 +1,7 @@
 'use strict';
 
+require('./_inventory.scss');
+
 module.exports = ['$log', InventoryController];
 
 function InventoryController($log) {
