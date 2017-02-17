@@ -2,29 +2,22 @@
 
   <h3>Previous Orders</h3>
 
-  <div>
-    <span class="orders-data-title">ORDERS #</span>
-  </div>
+  <table>
 
-  <div>
-    <span class="orders-data-title">DATE</span>
-  </div>
+    <tr>
+      <td>ORDERS #</td>
+      <td>DATE</td>
+      <td>SHIP TO</td>
+      <td>COMPLETED</td>
+    </tr>
 
-  <div>
-    <span class="orders-data-title">SHIP TO</span>
-  </div>
+    <tr ng-repeat="order in customerPreviousOrdersCtrl.arrayOfOrders">
+      <td>{{ order._id }}</td>
+      <td>{{ order.date | date:"MM/dd/yyyy" }}</td>
+      <td>{{ order.shippingName }}</td>
+      <td><span ng-show="!order.completed">Pending</span><span ng-show="order.completed">Completed</span></td>
+    </tr>
 
-  <div>
-    <span class="orders-data-title">COMPLETED</span>
-  </div>
+  </table>
 
-  <ul>
-    <li
-      ng-repeat="order in customerPreviousOrdersCtrl.arrayOfOrders">
-      <span class="order-data">{{ order._id }}</span>
-      <span class="order-data">{{ order.date | date:"MM/dd/yyyy" }}</span>
-      <span class="order-data">{{ order.shippingName }}</span>
-      <span class="order-data">{{ order.completed }}</span>
-    </li>
-  </ul>
 </section>
