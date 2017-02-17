@@ -2,7 +2,7 @@
 require('./_customer-settings.scss');
 
 module.exports = {
-  template: require('./customers-settings.html'),
+  template: require('./customer-settings.html'),
   controller: ['$log', 'customerService', CustomerSettingsController],
   controllerAs: 'customerSettingsCtrl'
 };
