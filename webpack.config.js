@@ -33,7 +33,7 @@ if(production) {
 
 module.exports = {
   entry: `${__dirname}/app/entry.js`,
-  devtool: production ? false : 'eval',
+  devtool: 'eval',
   plugins,
   output: {
     path: 'build',
