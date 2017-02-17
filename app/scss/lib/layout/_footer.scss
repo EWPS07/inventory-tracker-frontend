@@ -1,7 +1,8 @@
 footer {
   width: 100%;
-  position: absolute;
-  bottom: 0;
-  height: 8vw;
+  height: 15vw;
   background: $brand-primary;
+  @media (min-width: 700px) {
+    height: 10vw;
+  }
 }
