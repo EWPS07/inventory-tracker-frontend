@@ -4,7 +4,12 @@
   margin-bottom: $gutter-std;
 
   h2 {
+    color: $brand-secondary;
     font-size: 3vw;
+  }
+
+  p {
+    color: $brand-secondary;
   }
 
   select {

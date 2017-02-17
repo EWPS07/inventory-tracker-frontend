@@ -1,5 +1,5 @@
 <section class="employee-login-form">
-  <h2>login to your inventory_tracker employee account.</h2>
+  <h2>Employee Sign In</h2>
   <form name="employeeLoginForm"
     ng-submit="employeeLoginCtrl.login()"
     novalidate>
@@ -9,6 +9,7 @@
         name="username"
         placeholder=" username"
         ng-minlength="4"
+        class="input-lg"
         ng-model="employeeLoginCtrl.employee.username"
         required>
     </div>
@@ -18,6 +19,7 @@
         ng-disabled="employeeLoginForm.username.$invalid"
         placeholder=" password"
         ng-minlength="8"
+        class="input-lg"
         ng-model="employeeLoginCtrl.employee.password"
         required>
     </div>
