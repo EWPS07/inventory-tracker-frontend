@@ -2,20 +2,8 @@
 
 require('./_customer-dashboard.scss');
 
-module.exports = ['$log', '$rootScope', 'customerService', CustomerDashboardController];
+module.exports = ['$log', CustomerDashboardController];
 
-// function CustomerController($log, $location, customerService) {
-//   let url = $location.url();
-//   this.showSignup = url === '/join#signup' || url === '/join';
-// }
-
-function CustomerDashboardController($log, $rootScope, customerService){
+function CustomerDashboardController($log){
   $log.debug('CustomerDashboardController');
-
-  this.orderDeleteDone = function(order) {
-    if (this.currentCustomer.currentOrders._id === order._id) {
-      this.currentCustomer.currentOrders = null;
-    }
-  };
-
 }

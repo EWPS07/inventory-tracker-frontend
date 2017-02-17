@@ -13,10 +13,7 @@ function CartProductController($log, $rootScope, cartProductService, storeServic
     storeService.getStores()
     .then(() => {
       if (storeService.stores) storeService.currentStore = storeService.stores[0];
-
-      // if (customerService.currentCustomer.favoriteStore) {
-      //   storeService.currentStore = storeService.stores.find(_store => _store.storeNumber === customerService.currentCustomer.favoriteStore);
-      // }
+      
       this._storeService = storeService;
     });
   };

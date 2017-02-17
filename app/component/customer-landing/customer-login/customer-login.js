@@ -16,7 +16,7 @@ function CustomerLoginController($log, $location, customerService) {
 
     customerService.login(customer)
     .then( () => {
-      $location.url('/customer-dashboard');
+      $location.url('/shopping');
     });
   };
 }

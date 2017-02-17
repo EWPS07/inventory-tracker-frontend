@@ -16,7 +16,7 @@ function CustomerSignupController($log, $location, customerService) {
 
     customerService.signup(customer)
     .then( () => {
-      $location.url('/customer-dashboard');
+      $location.url('/shopping');
     });
   };
 }

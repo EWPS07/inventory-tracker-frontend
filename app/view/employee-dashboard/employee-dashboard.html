@@ -1,9 +1,6 @@
 <section class="employee-dashboard">
     <h2>employee dashboard</h2>
 
-    <!--TODO: BUILD OUT EMPLOYEE PROFILE COMPONENT-->
-    <!-- <employee-profile></employee-profile> -->
-
     <div class="store-selection">
       <div>
         <h2>Store {{employeeDashboardCtrl.currentStoreNumber}}</h2>
@@ -20,8 +17,6 @@
 
     <!--ALL FUNCTIONALITY BELOW THIS COMMENT IS FOR ADMINS ONLY-->
     <div class="employee-admin-container">
-        <!--NEED LOGIC TO MAKE NG-HIDE FUNCTIONALITY WORK-->
-    <!--<div class="employee-admin-container" ng-hide="!employeeDashboardCtrl.admin">-->
 
         <add-employee store="employeeDashboardCtrl.currentStore"></add-employee>
 
@@ -29,7 +24,6 @@
 
         <div class="employee-record-container">
             <ul>
-                <!--TODO: BUILD OUT EMPLOYEE RECORD COMPONENT-->
                 <employee-record
                   ng-repeat="record in employeeDashboardCtrl.employees | nameSearch: employeeDashboardCtrl.query"
                   employee="record"
