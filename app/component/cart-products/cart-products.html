@@ -1,0 +1,19 @@
+<section class="cart-products">
+  <input ng-model="cartProductCtrl.searchTerm" type="text" placeholder="Search for a product">
+  <table>
+    <tr>
+      <td>Name</td>
+      <td>Description</td>
+      <td>Price</td>
+      <td>Quantity</td>
+      <td></td>
+    </tr>
+    <tr ng-repeat="(index, product) in cartProductCtrl._storeService.currentStore.current | nameSearch: cartProductCtrl.searchTerm track by $index">
+      <td>{{product.name}}</td>
+      <td>{{product.desc}}</td>
+      <td>{{product.price / 100 | currency}}</td>
+      <td><input type="number" ng-model="cartProductCtrl._storeService.currentStore.current[index].buyQuantity"></td>
+      <td><button ng-click="cartProductCtrl.addToCart(product)">Add to cart</button></td>
+    </tr>
+  </table>
+</section>

@@ -29,7 +29,7 @@ if(production) {
     }),
     new CleanPlugin()
   ]);
-};
+}
 
 module.exports = {
   entry: `${__dirname}/app/entry.js`,
@@ -50,8 +50,12 @@ module.exports = {
         loader: 'babel'
       },
       {
+        test: /\.html$/,
+        loader: 'html'
+      },
+      {
         test: /\.(woff|tt|svg|eot).*/,
-        loader: 'url?limit=10000&name=image/[hash].[ext]'
+        loader: 'url?limit=10000&name=font/[hash].[ext]'
       },
       {
         test: /\.(jpg|jpeg|svg|bmp|gif|png)$/,

@@ -1,0 +1,13 @@
+//:::: ----------------- BASE STYLES AND VARS ----------------- :::://
+@import "lib/base/reset";
+@import "lib/theme/vars";
+@import "lib/base/base";
+
+//:::: ----------------- MAIN LAYOUT CONTAINERS ----------------- :::://
+// @import "lib/layout/header";
+@import "lib/layout/main";
+@import "lib/layout/footer";
+
+//:::: ----------------- COMPONENTS ----------------- :::://
+@import "../component/store-location/store-location";
+@import "../component/cart-products/cart-products";
