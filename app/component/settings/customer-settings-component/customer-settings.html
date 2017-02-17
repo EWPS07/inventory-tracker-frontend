@@ -1,0 +1,68 @@
+<section class="customer-settings">
+
+  <div class="current-info">
+    <ul>
+      <li>
+        <span>Name: {{ customerSettingsCtrl.currentCustomer.name }}</span>
+      </li>
+      <li>
+        <span>Username: {{ customerSettingsCtrl.currentCustomer.username }}</span>
+      </li>
+      <li>
+        <span>Address: {{ customerSettingsCtrl.currentCustomer.address }}</span>
+      </li>
+      <li>
+        <span>Email: {{ customerSettingsCtrl.currentCustomer.email }}</span>
+      </li>
+    </ul>
+  </div>
+
+  <form
+    class="new-info"
+    ng-submit="customerSettingsCtrl.updateCustomerInfo(customerSettingsCtrl.currentCustomer)">
+    <fieldset>
+      <div class="input-group">
+        <input
+          ng-model="customerSettingsCtrl.currentCustomer.name"
+          type="text"
+          class="input-lg"
+          placeholder="Your name">
+
+        <input
+          ng-model="customerSettingsCtrl.currentCustomer.username"
+          type="text"
+          class="input-lg"
+          placeholder="Your username">
+
+        <input
+          ng-model="customerSettingsCtrl.currentCustomer.address"
+          type="text"
+          class="input-lg"
+          placeholder="Your address">
+
+        <input
+          ng-model="customerSettingsCtrl.currentCustomer.email"
+          type="email"
+          class="input-lg"
+          placeholder="Your email">
+
+        <input
+          ng-model="customerSettingsCtrl.currentCustomer.password"
+          type="password"
+          class="input-lg"
+          placeholder="New password"
+
+      </div>
+      <button
+        class="btn-success"
+        type="submit">
+          Confirm Changes
+      </button>
+    </fieldset>
+    <button
+      class="btn-danger"
+      ng-click="customerSettingsCtrl.deleteCustomer(customerSettingsCtrl.currentCustomer._id)">
+      delete account
+    </button>
+  </form>
+</section>

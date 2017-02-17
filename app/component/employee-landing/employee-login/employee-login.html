@@ -1,0 +1,29 @@
+<section class="employee-login-form">
+  <h2>Employee Sign In</h2>
+  <form name="employeeLoginForm"
+    ng-submit="employeeLoginCtrl.login()"
+    novalidate>
+
+    <div ng-class="{ 'error': employeeLoginForm.username.$invalid, 'success': employeeLoginForm.username.$valid }">
+      <input type="text"
+        name="username"
+        placeholder=" username"
+        ng-minlength="4"
+        class="input-lg"
+        ng-model="employeeLoginCtrl.employee.username"
+        required>
+    </div>
+
+    <div ng-class="{ 'error': employeeLoginForm.password.$invalid && employeeLoginForm.$submitted, 'success': employeeLoginForm.password.$valid }">
+      <input type="password" name="password"
+        ng-disabled="employeeLoginForm.username.$invalid"
+        placeholder=" password"
+        ng-minlength="8"
+        class="input-lg"
+        ng-model="employeeLoginCtrl.employee.password"
+        required>
+    </div>
+
+    <button class="button-std">sign in</button>
+  </form>
+</section>

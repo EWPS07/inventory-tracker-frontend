@@ -1,0 +1,20 @@
+<section class="previous-orders">
+
+  <h3>Previous Orders</h3>
+  <table>
+    <tr>
+      <td>ORDERS #</td>
+      <td>DATE</td>
+      <td>SHIP TO</td>
+      <td>COMPLETED</td>
+    </tr>
+
+    <tr ng-repeat="order in customerPreviousOrdersCtrl.arrayOfOrders">
+      <td>{{ order._id }}</td>
+      <td>{{ order.date | date:"MM/dd/yyyy" }}</td>
+      <td>{{ order.shippingName }}</td>
+
+      <td><span ng-show="!order.completed">Pending</span><span ng-show="order.completed">Completed</span></td>
+    </tr>
+  </table>
+</section>

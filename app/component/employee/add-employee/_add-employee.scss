@@ -1,0 +1,40 @@
+@import "../../../scss/lib/theme/vars";
+
+.add-employee {
+  button {
+    margin: 0 0 17px 0;
+  }
+  .name-fieldset {
+    margin-top: 20px;
+  }
+
+  .shipping-label, .receiving-label {
+    margin: 15px 0 25px 20px;
+  }
+
+  @media (max-width: 530px) {
+    .shipping-label {
+      margin: 9px 0 15px 0;
+    }
+    .receiving-label {
+      margin: 0 0 18px 0;
+    }
+    select {
+      margin-right: 250px;
+    }
+  }
+
+  @media (max-width: 440px) {
+
+    select {
+      margin-right: 167px;
+    }
+  }
+
+  @media (max-width: 370px) {
+
+    select {
+      margin-right: 110px;
+    }
+  }
+}

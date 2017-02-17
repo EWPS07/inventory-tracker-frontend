@@ -1,0 +1,34 @@
+<section class="outgoing-product">
+  <table>
+    <tr>
+      <td>Name</td>
+      <td>Description</td>
+      <td>Subtotal</td>
+      <td>Quantity</td>
+      <td></td>
+    </tr>
+    <tr ng-repeat="(index, product) in outgoingProductCtrl.customerService.currentOrder.products track by $index">
+      <td>{{product.name}}</td>
+      <td>{{product.desc}}</td>
+      <td>{{(product.price * product.quantity) / 100 | currency}}</td>
+      <td>
+        <input type="number" ng-if="product.editMe" ng-model="outgoingProductCtrl.customerService.currentOrder.products[index].newQuantity">
+        <span ng-if="!product.editMe">{{product.quantity}}</span>
+      </td>
+      <td>
+        <p ng-show="!product.editMe" ng-click="product.newQuantity = product.quantity; product.editMe = true">Edit quantity</p>
+        <p ng-show="product.editMe" ng-click="outgoingProductCtrl.editQuantity(product)">Update order</p>
+        <p ng-click="outgoingProductCtrl.deleteItem(product)">Remove from cart</p>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><total></total></td>
+    </tr>
+  </table>
+
+  <button ng-click="outgoingProductCtrl.completeOrder()">Place order</button>
+</section>

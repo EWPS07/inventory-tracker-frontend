@@ -1,0 +1,42 @@
+@import "../../../scss/lib/theme/vars";
+
+.employee-record {
+  background: #eee;
+  padding: 15px 0 0 0;
+  margin: 20px 0 0 0;
+
+  div {
+    margin: 0 0 0 15px;
+  }
+
+  button {
+    margin: 12px 0 28px 73px;
+  }
+
+  .employee-data-title {
+    margin: 0 0 0 30px;
+    display: inline-block;
+    font-weight: 700;
+  }
+
+  .basic-info {
+    width: 90px;
+  }
+
+  .role {
+    width: 200px;
+  }
+
+  .employee-basic-info, .employee-roles {
+    display: inline-block;
+  }
+
+  @media (max-width: 500px) {
+    button {
+      margin: 12px 0 28px 43px;
+    }
+    .employee-data-title {
+      margin: 0;
+    }
+  }
+}

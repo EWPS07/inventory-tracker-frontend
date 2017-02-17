@@ -1,0 +1,30 @@
+.outgoing-product {
+  table {
+    tr {
+      border-bottom: 1px black solid;
+    }
+
+    tr:first-child {
+      background: $brand-secondary;
+    }
+    margin-bottom: 2vh;
+  }
+
+  td {
+    width: 20vw;
+    text-align: center;
+    padding: $gutter-sm;
+
+    p {
+      cursor: pointer;
+      color: $btn-primary;
+    }
+  }
+  input {
+    width: 4vw;
+  }
+
+  button {
+    float: right;
+  }
+}

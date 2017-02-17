@@ -1,0 +1,29 @@
+@import "../../scss/lib/theme/vars";
+
+.employee-dashboard {
+
+  label {
+    width: 85px;
+  }
+
+  input {
+    width: 85%;
+    margin: 10px 0 10px 0;
+  }
+
+  .employee-search {
+    width: 100%;
+  }
+
+  h2, h3 {
+    text-align: center;
+  }
+
+  .store-address {
+    text-align: center;
+  }
+
+  .store-selector {
+    margin: 0 10px 0 0;
+  }
+}

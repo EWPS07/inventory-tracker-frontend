@@ -1,0 +1,37 @@
+<section class="employee-dashboard">
+    <h2>Employee Dashboard</h2>
+
+    <div class="store-selection">
+      <div>
+        <h3>Store {{employeeDashboardCtrl.currentStoreNumber}}</h3>
+        <p class="store-address">{{employeeDashboardCtrl.currentStore.address}}</p>
+      </div>
+
+      <div>
+        <span class="store-selector">change store location:</span>
+        <select ng-model="employeeDashboardCtrl.currentStoreNumber" ng-change="employeeDashboardCtrl.changeStore(employeeDashboardCtrl.currentStoreNumber)">
+          <option ng-repeat="store in employeeDashboardCtrl.allStores" value="{{store.storeNumber}}">{{store.storeNumber}}</option>
+        </select>
+      </div>
+    </div>
+
+    <!--ALL FUNCTIONALITY BELOW THIS COMMENT IS FOR ADMINS ONLY-->
+    <div class="employee-admin-container">
+
+        <add-employee store="employeeDashboardCtrl.currentStore"></add-employee>
+
+        <input class="employee-search" ng-model="employeeDashboardCtrl.query" type="text" placeholder="search employees">
+
+        <div class="employee-record-container">
+            <ul>
+                <employee-record
+                  ng-repeat="record in employeeDashboardCtrl.employees | nameSearch: employeeDashboardCtrl.query"
+                  employee="record"
+                  store="employeeDashboardCtrl.currentStore"
+                  delete-done="employeeDashboardCtrl.employeeDeleteDone(employeeData)"
+                  ng-click="employeeDashboardCtrl.currentEmployee = record">
+                </employee-record>
+            </ul>
+        </div>
+    </div>
+</section>

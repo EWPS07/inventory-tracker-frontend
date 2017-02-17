@@ -1,0 +1,46 @@
+<li class="employee-record">
+
+  <div class="current-employee-record" ng-if="!employeeRecordCtrl.showEditEmployeeRecord">
+    <div class="employee-basic-info">
+      <div>
+        <span class="employee-data-title basic-info">name:</span>
+        <span class="employee-data">{{ employeeRecordCtrl.employee.name }}</span>
+      </div>
+
+      <div>
+        <span class="employee-data-title basic-info">username:</span>
+        <span class="employee-data">{{ employeeRecordCtrl.employee.username }}</span>
+      </div>
+
+      <div>
+        <span class="employee-data-title basic-info">email:</span>
+        <span class="employee-data">{{ employeeRecordCtrl.employee.email }}</span>
+      </div>
+    </div>
+
+    <div class="employee-roles">
+      <div>
+        <span class="employee-data-title role">is admin:</span>
+        <span class="employee-data">{{ employeeRecordCtrl.employee.admin }}</span>
+      </div>
+
+      <div>
+        <span class="employee-data-title role">has shipping privileges:</span>
+        <span class="employee-data">{{ employeeRecordCtrl.employee.admin }}</span>
+      </div>
+
+      <div>
+        <span class="employee-data-title role">has receiving privileges:</span>
+        <span class="employee-data">{{ employeeRecordCtrl.employee.admin }}</span>
+      </div>
+    </div>
+  </div>
+
+  <button
+    class="btn-danger"
+    ng-click="employeeRecordCtrl.deleteEmployeeRecord()"
+    ng-show="!employeeRecordCtrl.showEditEmployeeRecord">delete</button>
+
+  <div class="clearfix"></div>
+
+</li>

@@ -1,0 +1,8 @@
+<section class="inventory-view">
+  <store-location></store-location>
+  <button ng-click="inventoryCtrl.showCurrent()">Current</button>
+  <button class="button2" ng-click="inventoryCtrl.showOutgoing()">Outgoing</button>
+  <current ng-show="inventoryCtrl.showCurrentFlag"></current>
+  <outgoing ng-show="inventoryCtrl.showOutgoingFlag"></outgoing>
+  <inventory-to-store ng-show="inventoryCtrl.showCurrentFlag"></inventory-to-store>
+</section>

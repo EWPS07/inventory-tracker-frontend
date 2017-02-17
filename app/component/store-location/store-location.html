@@ -1,0 +1,15 @@
+<section class="current-location">
+  <div>
+    <h2>Store {{storeLocationCtrl.currentStoreNumber}}</h2>
+    <p>{{storeLocationCtrl.currentStore.address}}</p>
+  </div>
+
+  <div>
+    <p>Change location</p>
+    <select ng-model="storeLocationCtrl.currentStoreNumber" ng-change="storeLocationCtrl.changeStore(storeLocationCtrl.currentStoreNumber)">
+      <option ng-repeat="store in storeLocationCtrl.allStores" value="{{store.storeNumber}}">{{store.storeNumber}}</option>
+    </select>
+  </div>
+
+  <div class="clearfix"></div>
+</section>

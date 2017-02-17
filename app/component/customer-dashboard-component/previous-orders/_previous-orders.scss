@@ -1,0 +1,19 @@
+@import "../../../scss/lib/theme/_vars.scss";
+
+.previous-orders {
+  table {
+    tr {
+      border-bottom: 1px black solid;
+    }
+
+    tr:first-child {
+      background: $brand-secondary;
+    }
+  }
+
+  td {
+    width: 20vw;
+    text-align: center;
+    padding: $gutter-sm;
+  }
+}

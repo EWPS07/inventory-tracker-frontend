@@ -1,0 +1,10 @@
+<section class="current-orders">
+  <h2>My Cart</h2>
+  <div>
+    <p>Order #</p>
+    <select ng-model="currentOrderCtrl.currentOrder" ng-change="currentOrderCtrl.changeOrder(currentOrderCtrl.currentOrder)">
+      <option ng-repeat="order in currentOrderCtrl.customerOrders" value="{{order._id}}">{{order._id}}</option>
+    </select>
+  </div>
+  <div class="clearfix"></div>
+</section>
