@@ -1,12 +1,18 @@
 'use strict';
 
-module.exports = ['$q', '$log', '$http', '$window', authService];
+module.exports = ['$q', '$log', '$http', '$window', 'customerService', 'storeService', authService];
 
-function authService($q, $log, $http, $window) {
+function authService($q, $log, $http, $window, customerService, storeService) {
   $log.debug('authService');
 
   let service = {};
   let token = null;
+
+  service.logout = function() {
+    customerService.currentCustomer = {};
+    storeService.currentStore = {};
+    return $q.resolve();
+  };
 
   service.getToken = function() {
     $log.debug('authService.getToken');
