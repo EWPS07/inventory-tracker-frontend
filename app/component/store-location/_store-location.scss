@@ -1,0 +1,34 @@
+.current-location {
+  background: $brand-primary;
+  border-radius: 3px;
+  margin-bottom: $gutter-std;
+
+  h2 {
+    font-size: 3vw;
+  }
+
+  select {
+    background: $white;
+    margin: $gutter-sm;
+    float: right;
+    width: 15vw;
+  }
+
+  div:nth-child(2) {
+    padding: 1vw;
+
+    p {
+      float: right;
+      margin: $gutter-sm;
+    }
+  }
+
+  div:first-child {
+    float: left;
+    margin: $gutter-sm;
+  }
+
+  div.clearfix {
+    clear: both;
+  }
+}
