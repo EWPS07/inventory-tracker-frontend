@@ -11,7 +11,7 @@
     ng-repeat="(index, order) in outgoingCtrl.storeService.currentStore.outgoing track by $index">
     <span>{{ order._id }}</span>
     <span>{{ order.shippingName }}</span>
-    <span>{{ order.date }}</span>
+    <span>{{ order.date | date:"MM/dd/yyyy"}}</span>
     <span>{{ order.completed }}</span>
   </ul>
 </section>
