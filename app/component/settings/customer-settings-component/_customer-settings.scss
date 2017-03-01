@@ -1,31 +1,33 @@
 @import "../../../scss/lib/bootstrap/custom-bootstrap-vars";
 @import "../../../scss/lib/theme/vars";
-
 .customer-settings {
   width: 100%;
-
-  .current-info, .new-info {
+  padding: $gutter-sm;
+  h2 {
+    font-size: $font-size-h2;
+  }
+  button {
+    margin-top: $gutter-sm;
+  }
+  .input-lg {
+    margin-bottom: $gutter-sm;
+  }
+  .current-info,
+  .new-info {
     width: 50%;
 
-    .input-lg {
-      width: 80%;
-      display: inline-block;
-      margin: $gutter-sm / 2;
-    }
-    button {
-      display: inline-block;
-      float: left;
-    }
   }
   .current-info {
-    font-size: $font-size-h4;
-    text-align: center;
     float: left;
     ul {
-      text-align: left;
+      font-size: $font-size-h3;
     }
   }
   .new-info {
     float: right;
+    text-align: center;
+    input {
+      width: 100%;
+    };
   }
 }
