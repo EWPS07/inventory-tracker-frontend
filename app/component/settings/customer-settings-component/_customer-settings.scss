@@ -2,7 +2,6 @@
 @import "../../../scss/lib/theme/vars";
 .customer-settings {
   background: $white;
-  border: solid 1px $brand-primary;
   border-radius: $border-radius-base;
   width: 100%;
   padding: $gutter-sm;
@@ -21,14 +20,16 @@
 
   }
   .current-info {
-    border-right: solid $brand-primary .5px;
     float: left;
     ul {
       font-size: $font-size-h3;
     }
   }
   .new-info {
+    float: right;
     text-align: center;
-    border-left: solid $brand-primary .5px;
+    input {
+      width: 100%;
+    };
   }
 }
