@@ -16,7 +16,7 @@ function CurrentController($log, storeService, inventoryProductService) {
     product.desc = product.newDesc;
     product.quantity = product.newQuantity;
     product.category = product.newCategory;
-    product.price = product.price;
+    product.price = product.newPrice;
     inventoryProductService.updateProduct(product, product._id)
     .then(() => {
       for(var i = 0; i < storeService.currentStore.current.length; i++){
