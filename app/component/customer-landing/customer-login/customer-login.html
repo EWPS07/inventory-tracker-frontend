@@ -3,23 +3,19 @@
   <form
     ng-submit="customerLoginCtrl.login(customerLoginCtrl.customer)"
     novalidate>
-    <div>
       <input
         class="input-lg"
         type="text"
         placeholder="username"
         ng-model="customerLoginCtrl.customer.username"
         required>
-    </div>
 
-    <div>
       <input
         class="input-lg"
         type="password" name="password"
         placeholder="password"
         ng-model="customerLoginCtrl.customer.password"
         required>
-      </div>
 
       <button
         type="submit">

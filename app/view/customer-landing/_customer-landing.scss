@@ -1,7 +1,22 @@
+@import '../scss/lib/bootstrap/custom-bootstrap-vars';
+@import '../scss/lib/theme/vars';
+
 .customer-landing {
+  border-radius: 5px;
   text-align: center;
   width: 100%;
+  background: $btn-default-color;
+  padding-top: 3vw;
+  padding-bottom: 3vw;
+  span p {
+    color: $white;
+  }
+  a {
+    color: $brand-secondary;
+  }
   button {
-    display: block;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    width: 80%;
   }
 }

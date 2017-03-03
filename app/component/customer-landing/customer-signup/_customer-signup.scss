@@ -2,20 +2,24 @@
 @import "../../../scss/lib/theme/vars";
 
 .customer-signup {
+  // background: $btn-default-color;
+  // border-radius: 5px;
   form {
+    width: 100%;
+    // padding-top: $gutter-sm * 3;
+    // padding-bottom: $gutter-sm * 2;
     align-items: center;
-    background: $btn-default-color;
     display: flex;
     flex-direction: column;
-
     justify-content: space-around;
     input {
-      width: 75%;
+      width: 80%;
       margin-bottom: 1vw;
     }
-    button {
-      width: 25%;
-    }
+    // button {
+    //   margin-top: 1vw;
+    //   width: 80%;
+    // }
   }
 }
 

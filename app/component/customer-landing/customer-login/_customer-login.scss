@@ -1,14 +1,21 @@
 @import "../../../scss/lib/bootstrap/custom-bootstrap-vars";
 @import "../../../scss/lib/theme/vars";
 .customer-login {
-  text-align: center;
-  .input-lg {
-    width: 50%;
-    display: inline-block;
-    margin: $gutter-sm / 2;
-    clear: right;
-  }
-  button {
-    display: inline-block;
+  form {
+    width: 100%;
+    // padding-top: $gutter-sm * 3;
+    // padding-bottom: $gutter-sm * 2;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    input {
+      width: 80%;
+      margin-bottom: 1vw;
+    }
+    // button {
+    //   margin-top: 1vw;
+    //   width: 80%;
+    //}
   }
 }
