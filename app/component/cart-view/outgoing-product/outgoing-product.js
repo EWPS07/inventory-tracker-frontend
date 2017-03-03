@@ -12,7 +12,10 @@ function OutgoingProductController($log, $location, customerService, cartProduct
   this.customerService = customerService;
 
   this.editQuantity = function(product) {
-    if (product.quantity === product.newQuantity) return; //Call delete item;
+    if (product.quantity === product.newQuantity) {
+      product.editMe = false;
+      return;
+    }
     product.quantity = product.newQuantity - product.quantity;
     cartProductService.updateCartProduct(product._id, customerService.currentOrder.storeID, product, customerService.currentOrder)
     .then(() => {

@@ -25,7 +25,7 @@
         <input type="number" ng-if="product.editMe" ng-model="currentCtrl.storeService.currentStore.current[index].newQuantity">
       </td>
       <td>
-        <span ng-show="!product.editMe">{{ product.price }}</span>
+        <span ng-show="!product.editMe">{{ product.price / 100 | currency}}</span>
         <input type="number" ng-if="product.editMe" ng-model="currentCtrl.storeService.currentStore.current[index].newPrice">
       </td>
       <td>
