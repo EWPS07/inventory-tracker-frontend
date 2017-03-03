@@ -1,33 +1,34 @@
 @import "../../../scss/lib/bootstrap/custom-bootstrap-vars";
 @import "../../../scss/lib/theme/vars";
-.customer-settings {
-  width: 100%;
-  padding: $gutter-sm;
-  h2 {
-    font-size: $font-size-h2;
-  }
-  button {
-    margin-top: $gutter-sm;
-  }
-  .input-lg {
-    margin-bottom: $gutter-sm;
-  }
-  .current-info,
-  .new-info {
-    width: 50%;
 
-  }
-  .current-info {
-    float: left;
-    ul {
-      font-size: $font-size-h3;
-    }
-  }
-  .new-info {
-    float: right;
-    text-align: center;
-    input {
-      width: 100%;
-    };
-  }
-}
+// .customer-settings {
+//   width: 100%;
+//   padding: $gutter-sm;
+//   h2 {
+//     font-size: $font-size-h2;
+//   }
+//   button {
+//     margin-top: $gutter-sm;
+//   }
+//   .input-lg {
+//     margin-bottom: $gutter-sm;
+//   }
+//   .current-info,
+//   .new-info {
+//     width: 50%;
+//
+//   }
+//   .current-info {
+//     float: left;
+//     ul {
+//       font-size: $font-size-h3;
+//     }
+//   }
+//   .new-info {
+//     float: right;
+//     text-align: center;
+//     input {
+//       width: 100%;
+//     };
+//   }
+// }
