@@ -8,11 +8,24 @@
   background: $btn-default-color;
   padding-top: 3vw;
   padding-bottom: 3vw;
+  .customer-login, .customer-signup {
+    form {
+      width: 100%;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+  }
   span p {
     color: $white;
   }
   a {
     color: $brand-secondary;
+  }
+  input {
+    width: 80%;
+    margin-bottom: 1vw;
   }
   button {
     margin-top: 1vw;
