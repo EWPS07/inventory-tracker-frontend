@@ -1,9 +1,7 @@
 <section class="settings">
-  <h2>Account Settings</h2>
 
-  <customer-settings
-    ng-if="settingsCtrl.currentCustomer.hasOwnProperty('name')"
-  ></customer-settings>
+  <customer-settings ng-if="settingsCtrl.currentCustomer.hasOwnProperty('name')">
+  </customer-settings>
   <div
     ng-if="!settingsCtrl.currentCustomer.hasOwnProperty('name')"
   >

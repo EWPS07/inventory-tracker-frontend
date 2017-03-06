@@ -2,47 +2,49 @@
 @import '../scss/lib/theme/vars';
 .settings {
   width: 100%;
+  h4 {
+    color: $btn-primary-color;
+    margin: 0 auto;
+  }
+}
 
-  .customer-settings {
-    border-radius: 5px;
-    background: $btn-default-color;
-    padding-top: 3vw;
-    padding-bottom: 3vw;
-    width: 100%;
+.customer-settings {
+  border-radius: 5px;
+  background: $btn-default-color;
+  padding: 3vw;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .current-info, .new-info {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+  }
 
-    .current-info, .new-info {
-      display: flex;
-      flex-direction: column;
+  .current-info {
+    padding-top: 1vw;
+    font-size: 2vh;
+    align-items: center;
+    text-align: left;
+    flex-wrap: no-wrap;
+    li span, li span label {
+      color: $btn-primary-color;
     }
+  }
 
-    .current-info {
-      font-size: 1.5vw;
-      align-items: left;
-      padding: 5vw;
-      width: 33%;
-      flex-wrap: no-wrap;
-      li, span, label {
-        color: white;
-      }
-    }
+  .new-info {
+    padding: 0 auto;
+    align-items: center;
+    justify-content: space-around;
+  }
 
-    .new-info {
-      padding: 0 auto;
-      align-items: center;
-      width: 77%;
-      justify-content: space-around;
-    }
-
-    input {
-      width: 80%;
-      margin-bottom: 1vw;
-    }
-    button {
-      margin-top: 1vw;
-      margin-bottom: 1vw;
-      width: 80%;
-    }
+  input {
+    width: 80%;
+    margin-bottom: 1vw;
+  }
+  button {
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    width: 80%;
   }
 }

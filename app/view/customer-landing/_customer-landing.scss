@@ -10,6 +10,9 @@
   padding-bottom: 3vw;
   .customer-login, .customer-signup {
     form {
+      h4 {
+        color: $btn-primary-color;
+      }
       width: 100%;
       align-items: center;
       display: flex;
@@ -18,7 +21,7 @@
     }
   }
   span p {
-    color: $white;
+    color: $btn-primary-color;
   }
   a {
     color: $brand-secondary;
