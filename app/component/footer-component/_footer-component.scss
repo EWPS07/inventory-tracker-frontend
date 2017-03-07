@@ -1,12 +1,1 @@
 @import "../../scss/lib/theme/vars";
-
-.footer {
-  span {
-    color: $white;
-  }
-  padding-top: 5.5%;
-  text-align: center;
-  @media (min-width: 700px) {
-    padding-top: 3.5%;
-  }
-}

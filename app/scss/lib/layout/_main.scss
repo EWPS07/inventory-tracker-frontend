@@ -1,10 +1,13 @@
 main {
   width: 90%;
-  margin: $gutter-std;
+  height: 75vh;
+  margin-left: $gutter-std;
+  margin-right: $gutter-std;
   min-height: calc(100vh - 46vw);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  overflow: scroll;
 
   @media (min-width: 400px) {
     min-height: calc(100vh - 42vw);
