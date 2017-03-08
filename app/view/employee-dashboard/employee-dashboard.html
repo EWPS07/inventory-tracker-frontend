@@ -8,8 +8,8 @@
       </div>
 
       <div>
-        <span class="store-selector">change store location:</span>
-        <select ng-model="employeeDashboardCtrl.currentStoreNumber" ng-change="employeeDashboardCtrl.changeStore(employeeDashboardCtrl.currentStoreNumber)">
+        <label>Change store location</label>
+        <select class="input-lg" ng-model="employeeDashboardCtrl.currentStoreNumber" ng-change="employeeDashboardCtrl.changeStore(employeeDashboardCtrl.currentStoreNumber)">
           <option ng-repeat="store in employeeDashboardCtrl.allStores" value="{{store.storeNumber}}">{{store.storeNumber}}</option>
         </select>
       </div>
@@ -20,7 +20,7 @@
 
         <add-employee store="employeeDashboardCtrl.currentStore"></add-employee>
 
-        <input class="employee-search" ng-model="employeeDashboardCtrl.query" type="text" placeholder="search employees">
+        <input class="employee-search input-lg" ng-model="employeeDashboardCtrl.query" type="text" placeholder="search employees">
 
         <div class="employee-record-container">
             <ul>
