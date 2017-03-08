@@ -18,20 +18,18 @@
     <!--ALL FUNCTIONALITY BELOW THIS COMMENT IS FOR ADMINS ONLY-->
     <div class="employee-admin-container">
 
-        <add-employee store="employeeDashboardCtrl.currentStore"></add-employee>
+      <add-employee store="employeeDashboardCtrl.currentStore"></add-employee>
 
-        <input class="employee-search input-lg" ng-model="employeeDashboardCtrl.query" type="text" placeholder="search employees">
+      <input class="employee-search input-lg" ng-model="employeeDashboardCtrl.query" type="text" placeholder="search employees">
 
-        <div class="employee-record-container">
-            <ul>
-                <employee-record
-                  ng-repeat="record in employeeDashboardCtrl.employees | nameSearch: employeeDashboardCtrl.query"
-                  employee="record"
-                  store="employeeDashboardCtrl.currentStore"
-                  delete-done="employeeDashboardCtrl.employeeDeleteDone(employeeData)"
-                  ng-click="employeeDashboardCtrl.currentEmployee = record">
-                </employee-record>
-            </ul>
-        </div>
+      <ul class="employee-record-container">
+        <employee-record
+          ng-repeat="record in employeeDashboardCtrl.employees | nameSearch: employeeDashboardCtrl.query"
+          employee="record"
+          store="employeeDashboardCtrl.currentStore"
+          delete-done="employeeDashboardCtrl.employeeDeleteDone(employeeData)"
+          ng-click="employeeDashboardCtrl.currentEmployee = record">
+        </employee-record>
+      </ul>
     </div>
 </section>
