@@ -20,7 +20,9 @@
 
       <add-employee store="employeeDashboardCtrl.currentStore"></add-employee>
 
-      <input class="employee-search input-lg" ng-model="employeeDashboardCtrl.query" type="text" placeholder="search employees">
+      <div class="search-container">
+        <input class="employee-search input-lg" ng-model="employeeDashboardCtrl.query" type="text" placeholder="search employees">
+      </div>
 
       <ul class="employee-record-container">
         <employee-record
