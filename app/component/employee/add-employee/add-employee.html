@@ -4,61 +4,68 @@
     class="add-employee-form"
     ng-submit="addEmployeeCtrl.addEmployeeRecord()">
 
-    <fieldset class="name-fieldset">
-      <label for="name">name:</label>
+    <fieldset class="personal-info">
       <input type="text"
-        class="input-std"
+        class="input-lg"
         name="name"
+        placeholder="name"
         ng-model="addEmployeeCtrl.employee.name"
         required>
-    </fieldset>
 
-    <fieldset>
-      <label for="email">email:</label>
-      <input type="text"
-        class="input-std"
+      <input type="email"
+        class="input-lg"
         name="email"
+        placeholder="email"
         ng-model="addEmployeeCtrl.employee.email"
         required>
-    </fieldset>
 
-    <fieldset>
-      <label for="password">password:</label>
-      <input type="text"
-        class="input-std"
+      <input type="password"
+        class="input-lg"
         name="password"
+        placeholder="password"
         ng-model="addEmployeeCtrl.employee.password"
         required>
+
+      <input type="password"
+        class="input-lg"
+        name="confirmpassword"
+        placeholder="confirm password"
+        ng-model="addEmployeeCtrl.verifyPassword"
+        required>
     </fieldset>
 
-    <fieldset>
-      <label for="admin">admin?</label>
-      <select type="text"
-        class="input-std"
-        name="admin"
-        ng-model="addEmployeeCtrl.employee.admin"
-        ng-options="option.bool as option.selection for option in [{ selection: 'No', bool: false }, { selection: 'Yes', bool: true }]"
-        required>
-      </select>
-
-      <label class="shipping-label" for="shipping">shipping?</label>
-      <select class="option-std"
-        name="shipping"
-        ng-model="addEmployeeCtrl.employee.shipping"
-        ng-options="option.bool as option.selection for option in [{ selection: 'No', bool: false }, { selection: 'Yes', bool: true }]">
-      </select>
-
-      <label class="receiving-label" for="receiving">receiving?</label>
-      <select class="option-std"
-        name="receiving"
-        ng-model="addEmployeeCtrl.employee.receiving"
-        ng-options="option.bool as option.selection for option in [{ selection: 'No', bool: false }, { selection: 'Yes', bool: true }]">
-      </select>
+    <fieldset class="access">
+      <div>
+        <label for="admin">admin?</label>
+        <select type="text"
+          class="input-lg"
+          name="admin"
+          ng-model="addEmployeeCtrl.employee.admin"
+          ng-options="option.bool as option.selection for option in [{ selection: 'No', bool: false }, { selection: 'Yes', bool: true }]"
+          required>
+        </select>
+      </div>
+      <div>
+        <label class="shipping-label" for="shipping">shipping?</label>
+        <select class="input-lg"
+          name="shipping"
+          ng-model="addEmployeeCtrl.employee.shipping"
+          ng-options="option.bool as option.selection for option in [{ selection: 'No', bool: false }, { selection: 'Yes', bool: true }]">
+        </select>
+      </div>
+      <div>
+        <label class="receiving-label" for="receiving">receiving?</label>
+        <select class="input-lg"
+          name="receiving"
+          ng-model="addEmployeeCtrl.employee.receiving"
+          ng-options="option.bool as option.selection for option in [{ selection: 'No', bool: false }, { selection: 'Yes', bool: true }]">
+        </select>
+      </div>
     </fieldset>
 
     <!-- TODO: BUILD OUT REST OF FIELDS, WAY TO MAP TO STORE -->
 
-    <button class="btn-std" type="submit">add new employee</button>
+    <button class="btn-lg" type="submit">add new employee</button>
   </form>
 
   <div class="clearfix"></div>

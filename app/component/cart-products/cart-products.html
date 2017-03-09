@@ -1,5 +1,5 @@
 <section class="cart-products">
-  <input ng-model="cartProductCtrl.searchTerm" type="text" placeholder="Search for a product">
+  <input class="input-lg" ng-model="cartProductCtrl.searchTerm" type="text" placeholder="Search for a product">
   <table>
     <tr>
       <td>Name</td>
@@ -12,7 +12,7 @@
       <td>{{product.name}}</td>
       <td>{{product.desc}}</td>
       <td>{{product.price / 100 | currency}}</td>
-      <td><input type="number" ng-model="cartProductCtrl._storeService.currentStore.current[index].buyQuantity"></td>
+      <td><input class="input-lg" type="number" ng-model="cartProductCtrl._storeService.currentStore.current[index].buyQuantity"></td>
       <td><button ng-click="cartProductCtrl.addToCart(product)">Add to cart</button></td>
     </tr>
   </table>

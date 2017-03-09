@@ -1,15 +1,22 @@
+
 //:::: ----------------- COLORS ----------------- :::://
 $brand-primary: #0A0A0A;
 $brand-secondary: #ffdc00;
+$brand-gray: #3A3F40;
 $btn-primary: #147ccc;
 $white: #fff;
 $black: #000;
 
 //:::: ------------------ SIZES ------------------ :::://
-
 $gutter-std: 5%;
 $gutter-sm: $gutter-std / 2;
 
-//:::: ------------------ FONTS ------------------ :::://
+//:::: ---------------- FONT_SIZES --------------- :::://
+$font-xs: 1vh;
+$font-sm: 2vh;
+$font-md: 3vh;
+$font-lg: 4vh;
+$font-xl: 5vh;
 
+//:::: ------------------ FONTS ------------------ :::://
 $font-std: helvetica;

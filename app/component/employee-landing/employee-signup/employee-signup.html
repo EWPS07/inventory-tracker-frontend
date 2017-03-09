@@ -4,23 +4,31 @@
     ng-submit="signupControl.signup(signupControl.user)"
     novalidate>
 
-    <input class="input-std"
+    <input
+      class="input-lg"
       type="text"
       placeholder=" name"
       ng-minlength="4"
       ng-model="employeeSignupCtrl.employee.username"
       required>
-    <input class="input-std"
+    <input
+      class="input-lg"
       type="email"
       placeholder=" email"
       ng-model="employeeSignupCtrl.employee.email">
-    <input class="input-std"
+    <input
+      class="input-lg"
       type="password"
       placeholder=" password"
       ng-minlength="8"
       ng-model="employeeSignupCtrl.employee.password"
       required>
-
+    <input
+      class="input-lg"
+      type="password"
+      placeholder="confirm password"
+      ng-model="employeeSignupCtrl.verifyPassword"
+      required>
     <button type="submit" class="button-std">create new employee account</button>
   </form>
 </section>

@@ -6,7 +6,7 @@
 
   <div>
     <p>Change location</p>
-    <select ng-model="storeLocationCtrl.currentStoreNumber" ng-change="storeLocationCtrl.changeStore(storeLocationCtrl.currentStoreNumber)">
+    <select class="select-lg" ng-model="storeLocationCtrl.currentStoreNumber" ng-change="storeLocationCtrl.changeStore(storeLocationCtrl.currentStoreNumber)">
       <option ng-repeat="store in storeLocationCtrl.allStores" value="{{store.storeNumber}}">{{store.storeNumber}}</option>
     </select>
   </div>

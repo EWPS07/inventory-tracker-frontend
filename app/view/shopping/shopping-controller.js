@@ -1,4 +1,5 @@
 'use strict';
+require('./_shopping.scss');
 
 module.exports = ['$log', ShoppingController];
 

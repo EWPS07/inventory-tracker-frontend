@@ -1,7 +1,38 @@
+@import '../scss/lib/bootstrap/custom-bootstrap-vars';
+@import '../scss/lib/theme/vars';
+
 .customer-landing {
+  border-radius: 5px;
   text-align: center;
   width: 100%;
+  background: $btn-default-color;
+  padding-top: 3vw;
+  padding-bottom: 3vw;
+  .customer-login, .customer-signup {
+    form {
+      h4 {
+        color: $btn-primary-color;
+      }
+      width: 100%;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+  }
+  span p {
+    color: $btn-primary-color;
+  }
+  a {
+    color: $brand-secondary;
+  }
+  input {
+    width: 80%;
+    margin-bottom: 1vw;
+  }
   button {
-    display: block;
+    margin-top: 1vw;
+    margin-bottom: .5vw;
+    width: 80%;
   }
 }
