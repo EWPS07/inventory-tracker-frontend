@@ -19,7 +19,7 @@ let plugins = [
   })
 ];
 
-if(production) {
+// if(production) {
   plugins = plugins.concat([
     new webpack.optimize.UglifyJsPlugin({
       mangle: true,
@@ -29,11 +29,11 @@ if(production) {
     }),
     new CleanPlugin()
   ]);
-}
+// }
 
 module.exports = {
   entry: `${__dirname}/app/entry.js`,
-  devtool: production ? false : 'eval',
+  devtool: 'eval',
   plugins,
   output: {
     path: 'build',

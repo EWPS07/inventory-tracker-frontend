@@ -1,15 +1,2 @@
-@import "../../../scss/lib/theme/vars";
-
-.employee-login-form {
-  margin: 0 auto;
-  width: 20%;
-
-  input {
-    margin: $gutter-sm;
-  }
-
-  button {
-    margin-top: 3vh;
-    float: right;
-  }
-}
+@import '../../../scss/lib/theme/vars';
+@import '../../../scss/lib/bootstrap/custom-bootstrap-vars';

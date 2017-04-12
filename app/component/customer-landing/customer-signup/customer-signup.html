@@ -3,7 +3,7 @@
   <form
     ng-submit="customerSignupCtrl.signup(customerSignupCtrl.customer)"
     novalidate>
-
+      <h3>Create an account</h3>
       <input
         class="input-lg"
         type="text"
@@ -28,12 +28,17 @@
         type="email"
         placeholder="email"
         ng-model="customerSignupCtrl.customer.email">
-
       <input
         class="input-lg"
         type="password"
         placeholder="password"
         ng-model="customerSignupCtrl.customer.password"
+        required>
+      <input
+        class="input-lg"
+        type="password"
+        placeholder="password"
+        ng-model="customerSignupCtrl.verifyPassword"
         required>
       <div class="clearfix"></div>
       <button

@@ -1,29 +1,40 @@
 @import "../../scss/lib/theme/vars";
+@import "../../scss/lib/bootstrap/custom-bootstrap-vars";
 
 .employee-dashboard {
+  border-radius: 5px;
+  width: 100%;
+  color: $btn-primary-color;
+  background: $btn-default-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3vw;
+
+  :children {
+    width: 80%;
+  }
 
   label {
-    width: 85px;
+    display: inline-block;
+    color: $btn-primary-color;
   }
 
-  input {
-    width: 85%;
-    margin: 10px 0 10px 0;
+  select {
+    width: 40%;
   }
-
-  .employee-search {
-    width: 100%;
-  }
-
-  h2, h3 {
+  .store-selection {
     text-align: center;
   }
 
-  .store-address {
+  .search-container {
     text-align: center;
-  }
 
-  .store-selector {
-    margin: 0 10px 0 0;
+    .employee-search {
+      width: 100%;
+      margin: 0 auto;
+      margin-top: 1vw;
+    }
   }
 }

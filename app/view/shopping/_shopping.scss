@@ -1,0 +1,12 @@
+@import '../../scss/lib/bootstrap/custom-bootstrap-vars';
+@import '../../scss/lib/theme/vars';
+
+.shopping {
+  border-radius: 5px;
+  background: $btn-default-color;
+  padding: 3vw;
+  width: 100%;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+}
